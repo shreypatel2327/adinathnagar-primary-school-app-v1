@@ -1,67 +1,65 @@
-import { Utils } from "./utils"; // Assuming utils exists, or just do without it
-
 // Helper functions for Gujarati Dates
 function getGujaratiNumberWord(n: number): string {
-    const words = ["", "એક", "બે", "ત્રણ", "ચાર", "પાંચ", "છ", "સાત", "આઠ", "નવ", "દસ", "અગિયાર", "બાર", "તેર", "ચૌદ", "પંદર", "સોળ", "સત્તર", "અઢાર", "ઓગણીસ", "વીસ", "એકવીસ", "બાવીસ", "તેવીસ", "ચોવીસ", "પચ્ચીસ", "છવીસ", "સત્તાવીસ", "અઠ્ઠાવીસ", "ઓગણત્રીસ", "ત્રીસ"];
-    if (n <= 30) return words[n];
-    return n.toString(); // Fallback if > 30, though for dates usually max 31.
+  const words = ["", "એક", "બે", "ત્રણ", "ચાર", "પાંચ", "છ", "સાત", "આઠ", "નવ", "દસ", "અગિયાર", "બાર", "તેર", "ચૌદ", "પંદર", "સોળ", "સત્તર", "અઢાર", "ઓગણીસ", "વીસ", "એકવીસ", "બાવીસ", "તેવીસ", "ચોવીસ", "પચ્ચીસ", "છવીસ", "સત્તાવીસ", "અઠ્ઠાવીસ", "ઓગણત્રીસ", "ત્રીસ"];
+  if (n <= 30) return words[n];
+  return n.toString(); // Fallback if > 30, though for dates usually max 31.
 }
 
 export function dateToGujaratiWords(dateStr: string | Date | null | undefined): string {
-    if (!dateStr) return "";
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return "";
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return "";
 
-    const day = d.getDate(); // 1-31
-    const month = d.getMonth(); // 0-11
-    const year = d.getFullYear();
+  const day = d.getDate(); // 1-31
+  const month = d.getMonth(); // 0-11
+  const year = d.getFullYear();
 
-    const daysWords = ["", "પહેલી", "બીજી", "ત્રીજી", "ચોથી", "પાંચમી", "છઠ્ઠી", "સાતમી", "આઠમી", "નવમી", "દસમી", "અગિયારમી", "બારમી", "તેરમી", "ચૌદમી", "પંદરમી", "સોળમી", "સત્તરમી", "અઢારમી", "ઓગણીસમી", "વીસમી", "એકવીસમી", "બાવીસમી", "તેવીસમી", "ચોવીસમી", "પચ્ચીસમી", "છવીસમી", "સત્તાવીસમી", "અઠ્ઠાવીસમી", "ઓગણત્રીસમી", "ત્રીસમી", "એકત્રીસમી"];
-    const monthsWords = ["જાન્યુઆરી", "ફેબ્રુઆરી", "માર્ચ", "એપ્રિલ", "મે", "જૂન", "જુલાઈ", "ઓગસ્ટ", "સપ્ટેમ્બર", "ઓક્ટોબર", "નવેમ્બર", "ડિસેમ્બર"];
+  const daysWords = ["", "પહેલી", "બીજી", "ત્રીજી", "ચોથી", "પાંચમી", "છઠ્ઠી", "સાતમી", "આઠમી", "નવમી", "દસમી", "અગિયારમી", "બારમી", "તેરમી", "ચૌદમી", "પંદરમી", "સોળમી", "સત્તરમી", "અઢારમી", "ઓગણીસમી", "વીસમી", "એકવીસમી", "બાવીસમી", "તેવીસમી", "ચોવીસમી", "પચ્ચીસમી", "છવીસમી", "સત્તાવીસમી", "અઠ્ઠાવીસમી", "ઓગણત્રીસમી", "ત્રીસમી", "એકત્રીસમી"];
+  const monthsWords = ["જાન્યુઆરી", "ફેબ્રુઆરી", "માર્ચ", "એપ્રિલ", "મે", "જૂન", "જુલાઈ", "ઓગસ્ટ", "સપ્ટેમ્બર", "ઓક્ટોબર", "નવેમ્બર", "ડિસેમ્બર"];
 
-    // Year Conversion Logic
-    // var yearStr = year.toString();
-    const yearRemainder = year % 100;
-    const yearWord = "બે હજાર " + (year === 2000 ? "" : getGujaratiNumberWord(yearRemainder));
+  // Year Conversion Logic
+  // var yearStr = year.toString();
+  const yearRemainder = year % 100;
+  const yearWord = "બે હજાર " + (year === 2000 ? "" : getGujaratiNumberWord(yearRemainder));
 
-    return (daysWords[day] || day.toString()) + " " + (monthsWords[month] || "") + " " + yearWord.trim();
+  return (daysWords[day] || day.toString()) + " " + (monthsWords[month] || "") + " " + yearWord.trim();
 }
 
 export function formatDateGujarati(dateStr: string | Date | null | undefined): string {
-    if (!dateStr) return "";
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return "";
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return "";
 
-    const dd = ("0" + d.getDate()).slice(-2);
-    const mm = ("0" + (d.getMonth() + 1)).slice(-2);
-    const yyyy = d.getFullYear();
-    return `${dd}-${mm}-${yyyy}`;
+  const dd = ("0" + d.getDate()).slice(-2);
+  const mm = ("0" + (d.getMonth() + 1)).slice(-2);
+  const yyyy = d.getFullYear();
+  return `${dd}-${mm}-${yyyy}`;
 }
 
 export function toGujaratiNumbers(n: string | number): string {
-    const map: { [key: string]: string } = {
-        '0': '૦', '1': '૧', '2': '૨', '3': '૩', '4': '૪',
-        '5': '૫', '6': '૬', '7': '૭', '8': '૮', '9': '૯'
-    };
-    return n.toString().split('').map(char => map[char] || char).join('');
+  const map: { [key: string]: string } = {
+    '0': '૦', '1': '૧', '2': '૨', '3': '૩', '4': '૪',
+    '5': '૫', '6': '૬', '7': '૭', '8': '૮', '9': '૯'
+  };
+  return n.toString().split('').map(char => map[char] || char).join('');
 }
 
 
 // --- Template Generators ---
 
 export function getBonafideHtml(data: any): string {
-    // Extract and Process Data
-    const fullName = data.fullName || '';
-    const std = data.standard === '0' || data.standard === 0 ? 'Balwatika' : data.standard;
-    const status = 'અભ્યાસ કરે છે';
-    const dob = data.dob;
-    const formattedDob = formatDateGujarati(dob);
-    const dobWords = dateToGujaratiWords(dob);
-    const grNo = toGujaratiNumbers(data.grNo || '');
-    const today = formatDateGujarati(new Date());
+  // Extract and Process Data
+  const fullName = data.fullName || '';
+  const std = data.standard === '0' || data.standard === 0 ? 'Balwatika' : data.standard;
+  const status = 'અભ્યાસ કરે છે';
+  const dob = data.dob;
+  const formattedDob = formatDateGujarati(dob);
+  const dobWords = dateToGujaratiWords(dob);
+  const grNo = toGujaratiNumbers(data.grNo || '');
+  const today = formatDateGujarati(new Date());
 
-    // HTML from User
-    return `
+  // HTML from User
+  return `
   <html>
     <head>
       <meta charset="UTF-8">
@@ -119,38 +117,38 @@ export function getBonafideHtml(data: any): string {
 }
 
 export function getValiFormHtml(data: any): string {
-    const fullName = data.fullName || '';
-    const parts = fullName.toString().trim().split(' ');
-    // Simple heuristic split if individual fields not present
-    const name = data.firstName || (parts.length > 0 ? parts[0] : '');
-    const fname = data.fatherName || (parts.length > 1 ? parts[1] : '');
-    const surname = parts.length > 2 ? parts[parts.length - 1] : '';
+  const fullName = data.fullName || '';
+  const parts = fullName.toString().trim().split(' ');
+  // Simple heuristic split if individual fields not present
+  const name = data.firstName || (parts.length > 0 ? parts[0] : '');
+  const fname = data.fatherName || (parts.length > 1 ? parts[1] : '');
+  const surname = parts.length > 2 ? parts[parts.length - 1] : '';
 
-    const engName = (data.engName || fullName).toUpperCase();
-    const fEdu = data.fatherEdu || '';
-    const mName = data.motherName || '';
-    const mEdu = data.motherEdu || '';
-    const fOcc = data.fatherOcc || '';
-    const mOcc = data.motherOcc || '';
-    const caste = data.caste || '';
-    const gender = data.gender === 'Boy' ? 'કુમાર' : 'કન્યા';
+  const engName = (data.engName || fullName).toUpperCase();
+  const fEdu = data.fatherEdu || '';
+  const mName = data.motherName || '';
+  const mEdu = data.motherEdu || '';
+  const fOcc = data.fatherOcc || '';
+  const mOcc = data.motherOcc || '';
+  const caste = data.caste || '';
+  const gender = data.gender === 'Boy' ? 'કુમાર' : 'કન્યા';
 
-    const dob = data.dob;
-    const formattedDob = formatDateGujarati(dob);
-    const dobWords = dateToGujaratiWords(dob);
-    const bPlace = data.birthPlace || '';
-    const address = data.address || '';
-    const mobile = data.mobile || '';
-    const mTongue = 'ગુજરાતી';
-    const doc = 'જન્મનો દાખલો';
-    const formNo = 'Vali-' + (data.id || 'NEW');
-    const today = formatDateGujarati(new Date());
-    const teacherName = "વર્ગ શિક્ષક";
+  const dob = data.dob;
+  const formattedDob = formatDateGujarati(dob);
+  const dobWords = dateToGujaratiWords(dob);
+  const bPlace = data.birthPlace || '';
+  const address = data.address || '';
+  const mobile = data.mobile || '';
+  const mTongue = 'ગુજરાતી';
+  const doc = 'જન્મનો દાખલો';
+  const formNo = 'Vali-' + (data.id || 'NEW');
+  const today = formatDateGujarati(new Date());
+  const teacherName = "વર્ગ શિક્ષક";
 
-    // Logo - Ensure this URL is accessible or use base64
-    const logoSrc = "https://www.amcschoolboard.org/wp-content/uploads/2025/02/download-removebg-preview.png";
+  // Logo - Ensure this URL is accessible or use base64
+  const logoSrc = "https://www.amcschoolboard.org/wp-content/uploads/2025/02/download-removebg-preview.png";
 
-    return `
+  return `
   <html>
     <head>
       <meta charset="UTF-8">
