@@ -1,9 +1,7 @@
-
 import { NextRequest, NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+import { getBonafideHtml, getValiFormHtml } from "../../../lib/certificate-generator";
 
 export const dynamic = 'force-dynamic';
-import { getBonafideHtml, getValiFormHtml } from "../../../lib/certificate-generator";
 
 // Explicit OPTIONS for CORS preflight
 export async function OPTIONS() {
@@ -28,13 +26,31 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Invalid certificateType" }, { status: 400 });
         }
 
-        // Launch Puppeteer
-        // Note: In production (e.g. Vercel), this might need ‘puppeteer-core’ + ‘chrome-aws-lambda’.
-        // For local/VPS (Node.js), standard puppeteer works.
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: ["--no-sandbox", "--disable-setuid-sandbox"],
-        });
+        let browser;
+
+        if (process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production") {
+            // Production (Vercel)
+            const chromium = require("@sparticuz/chromium");
+            const puppeteer = require("puppeteer-core");
+
+            // Optional: Load fonts if needed (Chromium on Lambda has few fonts)
+            // await chromium.font('https://raw.githack.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSans/NotoSans-Regular.ttf');
+
+            browser = await puppeteer.launch({
+                args: chromium.args,
+                defaultViewport: chromium.defaultViewport,
+                executablePath: await chromium.executablePath(),
+                headless: chromium.headless,
+                ignoreHTTPSErrors: true,
+            });
+        } else {
+            // Local Development
+            const puppeteer = require("puppeteer");
+            browser = await puppeteer.launch({
+                headless: true,
+                args: ["--no-sandbox", "--disable-setuid-sandbox"],
+            });
+        }
 
         const page = await browser.newPage();
 
@@ -47,13 +63,13 @@ export async function POST(req: NextRequest) {
         const pdfBuffer = await page.pdf({
             format: "A4",
             printBackground: true,
-            margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" }, // Margins handled in CSS
+            margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },
         });
 
         await browser.close();
 
         // Return PDF
-        return new NextResponse(pdfBuffer as any, {
+        return new NextResponse(pdfBuffer, {
             headers: {
                 "Content-Type": "application/pdf",
                 "Content-Disposition": `inline; filename="${certificateType}.pdf"`,
