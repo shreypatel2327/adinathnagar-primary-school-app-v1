@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/services/auth_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,11 +12,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {
-      context.go('/login');
+    Timer(const Duration(seconds: 3), () async {
+      await AuthService().loadUser();
+      if (mounted) {
+        if (AuthService().isLoggedIn) {
+             if (AuthService().isTeacher) {
+                  context.go('/teacher-dashboard');
+              } else {
+                  context.go('/dashboard');
+              }
+        } else {
+          context.go('/login');
+        }
+      }
     });
   }
 

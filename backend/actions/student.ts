@@ -22,8 +22,15 @@ export async function createStudent(formData: FormData) {
     // Simple validation or splitting logic if needed
     // For now, storing as provided
 
+    // Generate next GR Number
+    const lastStudent = await db.student.findFirst({
+        orderBy: { grNo: 'desc' }
+    });
+    const nextGrNo = (lastStudent?.grNo || 0) + 1;
+
     await db.student.create({
         data: {
+            grNo: nextGrNo,
             firstName: fullName.split(" ")[0] || fullName, // Fallback
             lastName: fullName.split(" ").slice(1).join(" ") || "",
             fullName: fullName,

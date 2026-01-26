@@ -2,21 +2,19 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'dart:io';
+import 'package:mobile/services/auth_service.dart';
 
 class ApiService {
   static String get baseUrl {
-    if (kIsWeb) {
-      return 'http://localhost:3000/api';
-    } else if (Platform.isAndroid) {
-      return 'http://10.0.2.2:3000/api';
-    } else {
-      return 'http://localhost:3000/api';
-    }
+    return 'https://adinathnagar-primary-school-app-v0.vercel.app/api';
   }
 
   Future<List<dynamic>> getStudents() async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl/students'));
+      final response = await http.get(
+        Uri.parse('$baseUrl/students'),
+        headers: AuthService().headers,
+      );
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
@@ -31,7 +29,7 @@ class ApiService {
     try {
       final response = await http.post(
         Uri.parse('$baseUrl/students'),
-        headers: {'Content-Type': 'application/json'},
+        headers: AuthService().headers,
         body: json.encode(studentData),
       );
       if (response.statusCode != 200) {
@@ -44,7 +42,10 @@ class ApiService {
 
   Future<Map<String, dynamic>> getStudentById(String id) async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl/students/$id'));
+      final response = await http.get(
+        Uri.parse('$baseUrl/students/$id'),
+        headers: AuthService().headers,
+      );
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
@@ -59,7 +60,7 @@ class ApiService {
     try {
       final response = await http.put(
         Uri.parse('$baseUrl/students/$id'),
-        headers: {'Content-Type': 'application/json'},
+        headers: AuthService().headers,
         body: json.encode(studentData),
       );
       if (response.statusCode != 200) {
@@ -72,7 +73,10 @@ class ApiService {
 
   Future<void> deleteStudent(String id) async {
      try {
-      final response = await http.delete(Uri.parse('$baseUrl/students/$id'));
+      final response = await http.delete(
+        Uri.parse('$baseUrl/students/$id'),
+        headers: AuthService().headers,
+      );
       if (response.statusCode != 200) {
         throw Exception('Failed to delete student');
       }
@@ -85,7 +89,7 @@ class ApiService {
     try {
       final response = await http.patch(
         Uri.parse('$baseUrl/students/$id/javak'),
-        headers: {'Content-Type': 'application/json'},
+        headers: AuthService().headers,
         body: json.encode({
           'destinationSchool': destinationSchool,
           'leavingDate': leavingDate.toIso8601String(),
@@ -102,7 +106,10 @@ class ApiService {
 
   Future<List<dynamic>> getJavakStudents() async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl/javak-register'));
+      final response = await http.get(
+        Uri.parse('$baseUrl/javak-register'),
+        headers: AuthService().headers,
+      );
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
@@ -115,7 +122,10 @@ class ApiService {
 
   Future<List<dynamic>> getAavakStudents() async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl/aavak-register'));
+      final response = await http.get(
+        Uri.parse('$baseUrl/aavak-register'),
+        headers: AuthService().headers,
+      );
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
@@ -128,7 +138,10 @@ class ApiService {
 
   Future<Map<String, dynamic>> getDashboardStats() async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl/dashboard/stats'));
+      final response = await http.get(
+        Uri.parse('$baseUrl/dashboard/stats'),
+        headers: AuthService().headers,
+      );
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
@@ -146,7 +159,10 @@ class ApiService {
       if (search != null && search.isNotEmpty) {
           url += '?search=$search';
       }
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(
+        Uri.parse(url),
+        headers: AuthService().headers,
+      );
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
@@ -161,7 +177,7 @@ class ApiService {
     try {
       final response = await http.post(
         Uri.parse('$baseUrl/teachers'),
-        headers: {'Content-Type': 'application/json'},
+        headers: AuthService().headers,
         body: json.encode(data),
       );
       if (response.statusCode != 200) {
@@ -176,7 +192,7 @@ class ApiService {
     try {
       final response = await http.put(
         Uri.parse('$baseUrl/teachers/$id'),
-        headers: {'Content-Type': 'application/json'},
+        headers: AuthService().headers,
         body: json.encode(data),
       );
       if (response.statusCode != 200) {
