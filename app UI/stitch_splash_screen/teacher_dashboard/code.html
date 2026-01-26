@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teacher Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white overflow-x-hidden pb-20">
+<!-- Top App Bar -->
+<div class="flex items-center bg-white dark:bg-[#1a2632] p-4 sticky top-0 z-10 shadow-sm border-b border-gray-100 dark:border-gray-800">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+<span class="material-symbols-outlined text-[#111418] dark:text-white" style="font-size: 24px;">menu</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
+            Dashboard <span class="text-sm font-normal text-gray-500 block sm:inline sm:ml-2">(ડેશબોર્ડ)</span>
+</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer text-[#111418] dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 24px;">notifications</span>
+</button>
+</div>
+</div>
+<!-- Profile Header -->
+<div class="flex p-4 flex-col gap-4 bg-white dark:bg-[#1a2632] mb-2">
+<div class="flex w-full flex-row gap-4 items-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-20 w-20 shadow-inner border-2 border-primary/10" data-alt="Portrait of a male teacher in professional attire" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKBfTK0NoUOSgYeff9AHce6QYH1duwGUlktTrKoaD4QUWj_mdBMZFba8xu35JuuiNS1ieVYNffAWPlhkZKNRMyK_Kah6Hrd1WQlK4JIKZSuVrZpkT7VTqAI7-Nb2brPX1-Ebq8kgFCR6XJWSRUVZ67TkZ38BlgA4ezsIYPVrHxauCL_ldHKC4tsecEhfahspHjAW49nlHegOm3p07TzaqoDHkV1UoYd17euABWCWYVWU_uReC98TnEXICFWtye4IJ08e0jrcagPEw");'>
+</div>
+<div class="flex flex-col justify-center flex-1">
+<p class="text-[#111418] dark:text-white text-xl font-bold leading-tight">Namaste, Rameshbhai</p>
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium mt-1">Class Teacher: Std 3</p>
+<p class="text-primary text-sm font-medium mt-0.5">વર્ગ શિક્ષક: ધોરણ ૩</p>
+</div>
+</div>
+</div>
+<!-- Stats Section -->
+<div class="p-4">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold mb-3 px-1">Overview (ઝાંખી)</h3>
+<div class="flex flex-wrap gap-4">
+<!-- Total Students Card -->
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-5 bg-white dark:bg-[#1a2632] shadow-sm border border-gray-100 dark:border-gray-800 relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-primary" style="font-size: 80px;">groups</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined" style="font-size: 24px;">school</span>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Total Students</p>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<p class="text-[#111418] dark:text-white text-3xl font-bold leading-tight">45</p>
+<span class="text-gray-400 text-sm font-normal">(કુલ વિદ્યાર્થીઓ)</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 85%"></div>
+</div>
+<p class="text-xs text-gray-400 mt-1">85% Attendance Today</p>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="p-4 pt-0">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold mb-3 px-1">Quick Actions (ઝડપી ક્રિયાઓ)</h3>
+<div class="grid grid-cols-2 gap-4">
+<!-- Add Student -->
+<button class="flex flex-col gap-3 rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1a2632] p-5 items-center justify-center shadow-sm hover:shadow-md transition-all active:scale-95 group">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+<span class="material-symbols-outlined" style="font-size: 28px;">person_add</span>
+</div>
+<div class="text-center">
+<h2 class="text-[#111418] dark:text-white text-base font-bold leading-tight">Add Student</h2>
+<p class="text-gray-500 text-xs mt-1">વિદ્યાર્થી ઉમેરો</p>
+</div>
+</button>
+<!-- Class List -->
+<button class="flex flex-col gap-3 rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-[#1a2632] p-5 items-center justify-center shadow-sm hover:shadow-md transition-all active:scale-95 group">
+<div class="size-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-colors text-purple-600">
+<span class="material-symbols-outlined" style="font-size: 28px;">list_alt</span>
+</div>
+<div class="text-center">
+<h2 class="text-[#111418] dark:text-white text-base font-bold leading-tight">Class List</h2>
+<p class="text-gray-500 text-xs mt-1">વર્ગ યાદી</p>
+</div>
+</button>
+</div>
+</div>
+<!-- Recent Notices -->
+<div class="p-4 pt-0">
+<div class="flex justify-between items-center mb-3 px-1">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold">Notices (સૂચનાઓ)</h3>
+<a class="text-primary text-sm font-semibold" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex gap-4 rounded-xl bg-white dark:bg-[#1a2632] p-4 shadow-sm border-l-4 border-primary">
+<div class="flex flex-col justify-between flex-1">
+<div class="flex justify-between items-start">
+<h4 class="text-[#111418] dark:text-white font-semibold text-base">Diwali Vacation Update</h4>
+<span class="text-xs text-gray-500 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Today</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1 line-clamp-2">School will remain closed from Oct 28th for Diwali vacation. (દિવાળી વેકેશન માટે શાળા બંધ રહેશે.)</p>
+</div>
+</div>
+<div class="flex gap-4 rounded-xl bg-white dark:bg-[#1a2632] p-4 shadow-sm border-l-4 border-orange-400">
+<div class="flex flex-col justify-between flex-1">
+<div class="flex justify-between items-start">
+<h4 class="text-[#111418] dark:text-white font-semibold text-base">Exam Schedule</h4>
+<span class="text-xs text-gray-500 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Yesterday</span>
+</div>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1 line-clamp-2">Unit tests for Std 3 will begin next Monday. Prepare student lists.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<div class="fixed bottom-0 left-0 w-full bg-white dark:bg-[#1a2632] border-t border-gray-200 dark:border-gray-800 pb-safe pt-2 px-6 flex justify-between items-end h-[80px] z-50">
+<button class="flex flex-col items-center gap-1 p-2 text-primary w-16">
+<span class="material-symbols-outlined" style="font-size: 24px;">dashboard</span>
+<span class="text-xs font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-[#111418] dark:hover:text-white w-16 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">groups</span>
+<span class="text-xs font-medium">Students</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-[#111418] dark:hover:text-white w-16 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">calendar_month</span>
+<span class="text-xs font-medium">Schedule</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-gray-400 hover:text-[#111418] dark:hover:text-white w-16 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">person</span>
+<span class="text-xs font-medium">Profile</span>
+</button>
+</div>
+</body></html>

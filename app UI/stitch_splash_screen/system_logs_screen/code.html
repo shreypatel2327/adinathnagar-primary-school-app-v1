@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Logs</title>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2632",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Noto Sans Gujarati", "sans-serif"],
+                        "body": ["Public Sans", "Noto Sans Gujarati", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', 'Noto Sans Gujarati', sans-serif;
+        }
+        /* Custom scrollbar for chips */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-xl bg-background-light dark:bg-background-dark">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-10 flex items-center bg-surface-light dark:bg-surface-dark p-4 pb-2 justify-between border-b border-[#dbe0e6] dark:border-gray-800">
+<div class="text-[#111418] dark:text-white flex size-12 shrink-0 items-center justify-start cursor-pointer transition-colors hover:text-primary">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12 truncate">
+                System Logs <span class="font-normal text-sm block text-[#617589]">સિસ્ટમ લૉગ્સ</span>
+</h2>
+<div class="absolute right-4 flex items-center justify-end">
+<button class="flex items-center gap-1 text-primary hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-xl">download</span>
+</button>
+</div>
+</div>
+<!-- Search & Filters -->
+<div class="flex flex-col gap-4 px-4 py-4 bg-surface-light dark:bg-surface-dark">
+<!-- Search Bar -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#617589]">search</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-gray-700 bg-background-light dark:bg-background-dark focus:border-primary h-12 placeholder:text-[#617589] pl-10 pr-4 text-sm font-normal leading-normal transition-all" placeholder="Search User / વપરાશકર્તા શોધો" value=""/>
+</div>
+<!-- Secondary Filter -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#617589]">filter_list</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-gray-700 bg-background-light dark:bg-background-dark focus:border-primary h-12 placeholder:text-[#617589] pl-10 pr-4 text-sm font-normal leading-normal transition-all" placeholder="Filter by Action / ક્રિયા દ્વારા ફિલ્ટર કરો" value=""/>
+</div>
+<!-- Date Chips -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary pl-4 pr-4 cursor-pointer shadow-sm shadow-primary/30">
+<p class="text-white text-xs font-medium leading-normal">Today / આજે</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-background-light dark:bg-gray-800 border border-[#dbe0e6] dark:border-gray-700 pl-4 pr-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium leading-normal">This Week / આ અઠવાડિયે</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-background-light dark:bg-gray-800 border border-[#dbe0e6] dark:border-gray-700 pl-4 pr-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+<p class="text-[#617589] dark:text-gray-400 text-xs font-medium leading-normal">Month / મહિનો</p>
+</div>
+</div>
+</div>
+<!-- Table Header Labels -->
+<div class="flex justify-between items-center px-6 py-2 bg-background-light dark:bg-background-dark border-b border-[#dbe0e6] dark:border-gray-800 sticky top-[73px] z-0">
+<p class="text-[#617589] text-xs font-bold uppercase tracking-wider">User / વપરાશકર્તા</p>
+<p class="text-[#617589] text-xs font-bold uppercase tracking-wider">Activity / પ્રવૃત્તિ</p>
+</div>
+<!-- Log List -->
+<div class="flex flex-col">
+<!-- Item 1 -->
+<div class="group flex gap-4 bg-surface-light dark:bg-surface-dark px-4 py-4 justify-between border-b border-[#f0f2f4] dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-default">
+<div class="flex items-start gap-3 w-full">
+<!-- Avatar -->
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-gray-100 dark:border-gray-700 shadow-sm" data-alt="Portrait of Ramesh Patel" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC4_Fbpx6Dh3ycjxGe7y3SQa1r0HaQ7mVpU-jQigppSZgcDONwzD9Pv2YcTzZa_H84wGi2f2Gt0vb5HGOlDKG7ABU-MTQvkNuZANJSEbdanGKG7Qs1XuNrV2DiEwTzTUliPJ4eR3Au12Y_cA4CVFNaOEWxV2TJ8Xc5f5GcM7se6B4CFgYBV7yRBjcvXpLsJUZoHSLlBP6u6dwBljjyFFX6Ur4TTML9xneGaulrUvFd_JrNmH_IOYLfKlQT2-CA5EXKw_8dOrW94V6k");'></div>
+<div class="absolute -bottom-1 -right-1 bg-white dark:bg-surface-dark rounded-full p-0.5">
+<span class="material-symbols-outlined text-primary text-[16px] bg-blue-50 dark:bg-blue-900/30 rounded-full p-0.5">person</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<p class="text-[#111418] dark:text-white text-sm font-semibold leading-normal truncate pr-2">Ramesh Patel</p>
+<span class="inline-flex items-center rounded-md bg-blue-50 dark:bg-blue-900/30 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10">Edited</span>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-normal leading-normal mb-1">Edited Student: Rahul (Class 5-B)</p>
+<p class="text-[#9aa2ac] text-[10px] font-normal leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">schedule</span>
+                            10:45 AM
+                        </p>
+</div>
+</div>
+<div class="shrink-0 self-center">
+<div class="text-[#617589] dark:text-gray-500 flex items-center justify-center bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
+<span class="material-symbols-outlined text-xl">edit</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group flex gap-4 bg-surface-light dark:bg-surface-dark px-4 py-4 justify-between border-b border-[#f0f2f4] dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-default">
+<div class="flex items-start gap-3 w-full">
+<!-- Avatar -->
+<div class="relative shrink-0">
+<div class="flex items-center justify-center bg-purple-100 dark:bg-purple-900/30 rounded-full h-12 w-12 border border-purple-200 dark:border-purple-800/50 text-purple-600 dark:text-purple-300 font-bold text-sm">
+                            AO
+                         </div>
+<div class="absolute -bottom-1 -right-1 bg-white dark:bg-surface-dark rounded-full p-0.5">
+<span class="material-symbols-outlined text-purple-600 dark:text-purple-400 text-[16px] bg-purple-50 dark:bg-purple-900/30 rounded-full p-0.5">admin_panel_settings</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<p class="text-[#111418] dark:text-white text-sm font-semibold leading-normal truncate pr-2">Admin Office</p>
+<span class="inline-flex items-center rounded-md bg-purple-50 dark:bg-purple-900/30 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-300 ring-1 ring-inset ring-purple-700/10">Export</span>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-normal leading-normal mb-1">Generated Marksheet PDF</p>
+<p class="text-[#9aa2ac] text-[10px] font-normal leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">schedule</span>
+                            09:15 AM
+                        </p>
+</div>
+</div>
+<div class="shrink-0 self-center">
+<div class="text-[#617589] dark:text-gray-500 flex items-center justify-center bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
+<span class="material-symbols-outlined text-xl">picture_as_pdf</span>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group flex gap-4 bg-surface-light dark:bg-surface-dark px-4 py-4 justify-between border-b border-[#f0f2f4] dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-default">
+<div class="flex items-start gap-3 w-full">
+<!-- Avatar -->
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-gray-100 dark:border-gray-700 shadow-sm" data-alt="Portrait of Geeta Ben" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfInlaoTyKeVj9VY34WawsmafK0TfqoWWqZXIFK3DuhhliBP8OGKN3TB3FOu7AQggtqrlebpcP8ibgYGu0a8yh8AzxsoCswlxpQHUjjWrQtTTy_bRkDRJdRTdK7CnMwxaue9h5u0BZKg5HRmkiflu0z7PtSxMPEdtNcRIl39GztV1x5CrrHIaING-r_S3LneP--gqTxHdCeKJSLCenHEE6U1RBd8EU1-IqrzjwCIbAVj4cZSmCmtePVFeWDWbfKllxBJk3rMn13oE");'></div>
+</div>
+<div class="flex flex-1 flex-col justify-center min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<p class="text-[#111418] dark:text-white text-sm font-semibold leading-normal truncate pr-2">Geeta Ben</p>
+<span class="inline-flex items-center rounded-md bg-red-50 dark:bg-red-900/30 px-2 py-1 text-xs font-medium text-red-700 dark:text-red-300 ring-1 ring-inset ring-red-600/10">Deleted</span>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-normal leading-normal mb-1">Removed Attendance Record</p>
+<p class="text-[#9aa2ac] text-[10px] font-normal leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">calendar_month</span>
+                            Yesterday
+                        </p>
+</div>
+</div>
+<div class="shrink-0 self-center">
+<div class="text-[#617589] dark:text-gray-500 flex items-center justify-center bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
+<span class="material-symbols-outlined text-xl text-red-500">delete</span>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="group flex gap-4 bg-surface-light dark:bg-surface-dark px-4 py-4 justify-between border-b border-[#f0f2f4] dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-default">
+<div class="flex items-start gap-3 w-full">
+<!-- Avatar -->
+<div class="relative shrink-0">
+<div class="flex items-center justify-center bg-green-100 dark:bg-green-900/30 rounded-full h-12 w-12 border border-green-200 dark:border-green-800/50 text-green-700 dark:text-green-300 font-bold text-sm">
+                            SK
+                         </div>
+</div>
+<div class="flex flex-1 flex-col justify-center min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<p class="text-[#111418] dark:text-white text-sm font-semibold leading-normal truncate pr-2">Suresh Kumar</p>
+<span class="inline-flex items-center rounded-md bg-green-50 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20">Added</span>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-normal leading-normal mb-1">Added New Student: Priya</p>
+<p class="text-[#9aa2ac] text-[10px] font-normal leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">calendar_month</span>
+                            Yesterday
+                        </p>
+</div>
+</div>
+<div class="shrink-0 self-center">
+<div class="text-[#617589] dark:text-gray-500 flex items-center justify-center bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
+<span class="material-symbols-outlined text-xl text-green-600">person_add</span>
+</div>
+</div>
+</div>
+<!-- Item 5 - System -->
+<div class="group flex gap-4 bg-surface-light dark:bg-surface-dark px-4 py-4 justify-between border-b border-[#f0f2f4] dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-default">
+<div class="flex items-start gap-3 w-full">
+<!-- Avatar -->
+<div class="relative shrink-0">
+<div class="flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-full h-12 w-12 border border-gray-200 dark:border-gray-600">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-2xl">dns</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col justify-center min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<p class="text-[#111418] dark:text-white text-sm font-semibold leading-normal truncate pr-2">System / સિસ્ટમ</p>
+<span class="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 ring-1 ring-inset ring-gray-500/10">Auto</span>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-normal leading-normal mb-1">Scheduled Database Backup</p>
+<p class="text-[#9aa2ac] text-[10px] font-normal leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">calendar_month</span>
+                            25 Oct
+                        </p>
+</div>
+</div>
+<div class="shrink-0 self-center">
+<div class="text-[#617589] dark:text-gray-500 flex items-center justify-center bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
+<span class="material-symbols-outlined text-xl">cloud_done</span>
+</div>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="group flex gap-4 bg-surface-light dark:bg-surface-dark px-4 py-4 justify-between border-b border-[#f0f2f4] dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-default">
+<div class="flex items-start gap-3 w-full">
+<!-- Avatar -->
+<div class="relative shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border border-gray-100 dark:border-gray-700 shadow-sm" data-alt="Portrait of Anjali Desai" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlGZi-3l54NBatpiEsVmsJZeLid8adCTpfS6x93hkAFpJ290_rtzzfytVISztZA8Qn2fdR78ygK3wKp2Kto_f8CBrUX2KS6v21vyTG-Cc3-QAr1PBrwE1hYJ54kSMAxkj9S0rhAdY7g9A9KBv1ZwY9UANB62y8JVKT_pRQwNen1t-CB00i8qiQMaBgKbALI2vIw4IWynQEX0GTdUxYuNzhfC6QDCfVsg1Uxa7F570edTHRvqk7nno1zX2bBVk88go03wrA2u9Ru30");'></div>
+</div>
+<div class="flex flex-1 flex-col justify-center min-w-0">
+<div class="flex justify-between items-start mb-0.5">
+<p class="text-[#111418] dark:text-white text-sm font-semibold leading-normal truncate pr-2">Anjali Desai</p>
+<span class="inline-flex items-center rounded-md bg-orange-50 dark:bg-orange-900/30 px-2 py-1 text-xs font-medium text-orange-700 dark:text-orange-300 ring-1 ring-inset ring-orange-600/20">Notice</span>
+</div>
+<p class="text-[#617589] dark:text-gray-400 text-xs font-normal leading-normal mb-1">Published Holiday Notice</p>
+<p class="text-[#9aa2ac] text-[10px] font-normal leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">calendar_month</span>
+                            24 Oct
+                        </p>
+</div>
+</div>
+<div class="shrink-0 self-center">
+<div class="text-[#617589] dark:text-gray-500 flex items-center justify-center bg-gray-100 dark:bg-gray-800 p-2 rounded-lg">
+<span class="material-symbols-outlined text-xl text-orange-500">campaign</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination Loader -->
+<div class="p-4 flex justify-center pb-8 bg-surface-light dark:bg-surface-dark">
+<span class="text-sm text-[#617589] font-medium flex items-center gap-2">
+<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>
+                Loading more logs...
+            </span>
+</div>
+</div>
+</body></html>

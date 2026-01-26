@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html class="light" lang="gu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>School Login</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Noto+Sans+Gujarati:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Noto Sans Gujarati", "sans-serif"],
+                        "body": ["Public Sans", "Noto Sans Gujarati", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col justify-center items-center relative overflow-hidden text-[#111418] dark:text-white">
+<!-- Decorative Background Blob -->
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[30%] bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[30%] bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="w-full max-w-md px-6 py-8 relative z-10 flex flex-col items-center">
+<!-- Logo Section -->
+<div class="mb-6 flex flex-col items-center gap-3 text-center">
+<div class="p-1 rounded-full bg-white dark:bg-slate-800 shadow-sm">
+<div class="w-24 h-24 bg-center bg-no-repeat bg-cover rounded-full border border-slate-100 dark:border-slate-700" data-alt="Government school emblem logo with crest" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-EAeR0cZQZjQpqrdyuG3hW5I8yUx9-CPQC4Xat8AVTZMIpCSpJvr1jaXeWqpow6AV3yQ-uuj1xHIF7cPVim3Tzq0Hsooc1eCiNshz4KsVC206avOxd8ftRJVwRjbe-R2Az7vKJ9kAdPKuwP6OoaW_Nof7NMxoreY1ehC9afZzAB4QdaFRVmQIn0md2ZqEs4hec5Q2MaUBhe6G_PuKijNpdDPI-4cQMkG_vyKQZJyNKAcOoZMb48hQhVn2cYb6jyQB4g4-tEMnomE");'>
+</div>
+</div>
+</div>
+<!-- Headline Text -->
+<h1 class="text-[#111418] dark:text-white tracking-tight text-[28px] md:text-[32px] font-bold leading-tight text-center pb-8">
+            શ્રી સરકારી પ્રાથમિક શાળા
+        </h1>
+<!-- Login Form -->
+<div class="w-full space-y-5">
+<!-- Username Field -->
+<label class="flex flex-col w-full">
+<p class="text-[#111418] dark:text-slate-200 text-base font-medium leading-normal pb-2">વપરાશકર્તા નામ</p>
+<div class="flex w-full items-stretch rounded-lg shadow-sm">
+<input class="form-input flex-1 w-full min-w-0 resize-none overflow-hidden rounded-l-lg text-[#111418] dark:text-white bg-white dark:bg-slate-800 border border-[#dbe0e6] dark:border-slate-600 focus:outline-0 focus:ring-2 focus:ring-primary/20 focus:border-primary h-14 placeholder:text-[#617589] dark:placeholder:text-slate-400 p-[15px] pr-2 text-base font-normal leading-normal transition-all" placeholder="Enter username" type="text" value=""/>
+<div class="flex items-center justify-center px-4 bg-white dark:bg-slate-800 border border-l-0 border-[#dbe0e6] dark:border-slate-600 rounded-r-lg text-[#617589] dark:text-slate-400">
+<span class="material-symbols-outlined text-[24px]">person</span>
+</div>
+</div>
+</label>
+<!-- Password Field -->
+<label class="flex flex-col w-full">
+<p class="text-[#111418] dark:text-slate-200 text-base font-medium leading-normal pb-2">પાસવર્ડ</p>
+<div class="flex w-full items-stretch rounded-lg shadow-sm">
+<input class="form-input flex-1 w-full min-w-0 resize-none overflow-hidden rounded-l-lg text-[#111418] dark:text-white bg-white dark:bg-slate-800 border border-[#dbe0e6] dark:border-slate-600 focus:outline-0 focus:ring-2 focus:ring-primary/20 focus:border-primary h-14 placeholder:text-[#617589] dark:placeholder:text-slate-400 p-[15px] pr-2 text-base font-normal leading-normal transition-all" placeholder="Enter password" type="password" value=""/>
+<div class="flex items-center justify-center px-4 bg-white dark:bg-slate-800 border border-l-0 border-[#dbe0e6] dark:border-slate-600 rounded-r-lg text-[#617589] dark:text-slate-400 cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">visibility</span>
+</div>
+</div>
+</label>
+<!-- Forgot Password Link -->
+<div class="flex justify-end w-full">
+<a class="text-primary hover:text-blue-600 text-sm font-medium transition-colors" href="#">
+                    પાસવર્ડ ભૂલી ગયા છો?
+                </a>
+</div>
+<!-- Login Button -->
+<button class="w-full flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary hover:bg-blue-600 text-white text-base font-bold leading-normal tracking-[0.015em] shadow-md transition-all active:scale-[0.98]">
+<span class="truncate">લોગિન</span>
+</button>
+</div>
+<!-- Footer Info -->
+<div class="mt-12 text-center">
+<p class="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                v1.0 • <a class="hover:text-primary underline" href="#">સહાયતા</a>
+</p>
+</div>
+</div>
+</body></html>

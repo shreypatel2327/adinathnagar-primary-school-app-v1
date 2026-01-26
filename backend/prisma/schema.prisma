@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String      @id @default(cuid())
+  username  String      @unique
+  password  String
+  role      String // ADMIN, TEACHER
+  fullName  String?
+  standard  String?
+  isActive  Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  logs      SystemLog[]
+}
+
+model SystemLog {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  actionType  String // CREATE, UPDATE, DELETE, EXPORT, SYSTEM
+  title       String // e.g., "Ramesh Patel", "System"
+  description String // e.g., "Edited Student: Rahul", "Backup"
+  createdAt   DateTime @default(now())
+}
+
+model Student {
+  id         String    @id @default(cuid())
+  grNo       Int       @unique // Removed autoincrement for SQLite compatibility
+  firstName  String
+  middleName String?
+  lastName   String?
+  fullName   String? // For storing the full gujarati string if needed
+  gender     String
+  dob        DateTime?
+  standard   Int
+  category   String?
+  address    String?
+
+  // Admission Control
+  oldSchoolGrNo String?
+  newSchoolGrNo String?
+  dietNo        String?
+  prevSchool    String?
+
+  // Personal
+  mobile     String?
+  birthPlace String?
+  caste      String? // General, OBC, SC, ST
+
+  // Family
+  fatherName          String?
+  fatherEdu           String?
+  fatherOcc           String?
+  fatherAadhaar       String?
+  fatherNameOnAadhaar String?
+
+  motherName    String?
+  motherEdu     String?
+  motherOcc     String?
+  motherAadhaar String?
+
+  // Govt
+  aadhaarNo     String?
+  nameOnAadhaar String?
+  uid           String? // Student DISE
+  rationCard    String?
+  birthCertName String?
+  birthCertNo   String?
+
+  // Bank
+  bankAccount    String?
+  ifscCode       String?
+  bankName       String?
+  bankHolderName String?
+
+  // Academic
+  admissionDate DateTime?
+  academicYear  String?
+  result        String?
+  percentage    Float?
+  attendance    Float?
+
+  // Social
+  transportation     String? // Yes/No
+  isHandicapped      String? // Yes/No
+  handicapPercentage Float?
+
+  // Javak / Exit
+  status            String    @default("Active") // Active, Javak
+  leavingDate       DateTime?
+  destinationSchool String?
+  remarks           String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  certificates Certificate[]
+}
+
+model Certificate {
+  id        String   @id @default(cuid())
+  type      String // BONAFIDE, LEAVING
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  issuedAt  DateTime @default(now())
+  content   String?
+}

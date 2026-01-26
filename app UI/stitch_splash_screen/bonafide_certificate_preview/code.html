@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bonafide Certificate Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700&amp;family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2b8cee",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "Noto Sans Gujarati", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for better mobile feel if content overflows */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body>
+<div class="relative flex h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-hidden font-display transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<div class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between border-b border-gray-100 dark:border-gray-800 z-20 shrink-0 shadow-sm">
+<button class="text-[#111418] dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Certificate Preview</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full size-12 bg-transparent text-[#111418] dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition-colors p-0">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</div>
+<!-- Main Content Area (Scrollable) -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden w-full flex flex-col items-center py-6 px-4 bg-background-light dark:bg-background-dark">
+<!-- Certificate Paper Container -->
+<!-- We keep the certificate white even in dark mode to simulate real paper -->
+<div class="relative w-full max-w-[420px] bg-white text-black shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-sm p-6 sm:p-8 flex flex-col gap-5 border border-gray-100 aspect-[1/1.414] shrink-0 transform transition-transform duration-300 origin-top">
+<!-- School Header -->
+<div class="flex flex-col items-center justify-center border-b-2 border-primary/20 pb-4">
+<div class="w-16 h-16 mb-2 rounded-full overflow-hidden flex items-center justify-center bg-gray-50">
+<!-- Abstract School Logo Placeholder -->
+<div class="w-full h-full bg-cover bg-center" data-alt="School Emblem Logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcIuG3MxmvvZirxcaFYkgcObDQkPY9I4endV788rug3CUlz07ZF2cr-N8tQ2C9NMUDBA377t5ynC1Mbb95iF9HiBWvwsuKfsPVOCykCYwuyfJCRQ1ArNaBDpla0EAmfZSa_5L4SZN6dg9yvIMkvSxQ6iIVzJiHc6mJYcLnEaSzmoFSqimQwgACSmbz1dtH_lNiNRgeZWvWubrUiKbDGYv1UvN884bHLImwuPq9ID-BmpwB5NDMWrSVG4sKJ4WXh_dso0JIXHdIBWI');"></div>
+</div>
+<h2 class="text-[#111418] text-xl font-bold leading-tight text-center tracking-tight">શ્રી સરકારી પ્રાથમિક શાળા</h2>
+<p class="text-xs text-gray-500 mt-1 font-medium tracking-wide uppercase">પ્રાથમિક શિક્ષણ વિભાગ, ગુજરાત સરકાર</p>
+</div>
+<!-- Certificate Title -->
+<div class="py-2">
+<h1 class="text-[#111418] text-[26px] font-bold leading-tight text-center text-primary tracking-tight">બોનાફાઇડ સર્ટિફિકેટ</h1>
+</div>
+<!-- Student Details & Photo Section -->
+<div class="flex justify-between items-start gap-4">
+<div class="flex-1 flex flex-col gap-3 pt-1">
+<div class="flex flex-col gap-0.5">
+<span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">નામ (Name)</span>
+<span class="text-base font-bold text-[#111418] border-b border-dashed border-gray-300 pb-0.5">રાહુલ વિજયભાઈ પટેલ</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">જી.આર. નં (GR No)</span>
+<span class="text-base font-medium text-[#111418] border-b border-dashed border-gray-300 pb-0.5">૧૨૩૪</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">ધોરણ (Standard)</span>
+<span class="text-base font-medium text-[#111418] border-b border-dashed border-gray-300 pb-0.5">૫-બ</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">જન્મ તારીખ (DOB)</span>
+<span class="text-base font-medium text-[#111418] border-b border-dashed border-gray-300 pb-0.5">૦૧/૦૬/૨૦૧૩</span>
+</div>
+</div>
+<!-- Student Photo -->
+<div class="w-[100px] h-[120px] bg-gray-100 border-2 border-white shadow-sm outline outline-1 outline-gray-200 flex items-center justify-center shrink-0 rounded overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Student passport size photo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBagsCy0zQ0ueJy7r1_s22Qg-I8PtgDOtQJvHuzY8EOmxa9EBUT01tMx6LG4i2KfgL9NFDKhdI3OrvFWYl4O3BrAJSHIS5c4OvXiWCRyb3-mNS0L6pfQYIFicJq84gK-Of1EUIEv7D5YZijv-V1LCSpDmpwFZaaawnjBTZsO1w7mAFuZHawkXRPp9FTUhHe-TjYZkdxzPo8RxagOHgBRMb4efTQHAEGiEm9C4EQV154YjPC0NqwW6xCg_2hXlsL7TYzxBApdvFlCFI');"></div>
+</div>
+</div>
+<!-- Certificate Body Text -->
+<div class="mt-2">
+<p class="text-[#111418] text-[15px] font-normal leading-loose text-justify">
+                        આથી પ્રમાણપત્ર આપવામાં આવે છે કે ઉપર જણાવેલ વિદ્યાર્થી આ શાળાના નિયમિત વિદ્યાર્થી છે. શાળાના રેકોર્ડ મુજબ તેમની વર્તણૂક સારી છે. આ પ્રમાણપત્ર તેમના વાલીની વિનંતીથી શૈક્ષણિક હેતુ માટે આપવામાં આવેલ છે.
+                    </p>
+</div>
+<!-- Footer / Signatures -->
+<div class="mt-auto pt-8 flex justify-between items-end">
+<div class="flex flex-col gap-1">
+<p class="text-sm font-bold text-gray-800">તારીખ: <span class="font-normal text-black">૧૨/૧૦/૨૦૨૩</span></p>
+<p class="text-sm font-bold text-gray-800">સ્થળ: <span class="font-normal text-black">અમદાવાદ</span></p>
+</div>
+<div class="flex flex-col items-center gap-1 w-36">
+<!-- Signature Placeholder -->
+<div class="w-full h-12 flex items-end justify-center mb-1 relative">
+<!-- Faux signature -->
+<div class="absolute bottom-1 w-24 h-8 bg-contain bg-center bg-no-repeat opacity-80 rotate-[-5deg]" data-alt="Digital Signature of Principal" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXk_gWUkchRXw4lx2kjPEnz4BfbTEKVCuhjCAjSs0jd5zzF20HH_pti68MIqZcbQB4a7sI8v-zE22201LFVNUbD_8L3InVbcUarVHq3KlXzumg_rMXQx2EBsoUqGiHaqyOLyhXocXdQGck5xrDqPL61VC_Iqd_6xBm2vXib9wyvHM1Qm3LSIFtI4MCMwaXkQoGhSCXW-Qn3h3kFv2KRCLBFQt7D3dQJUWDDqavr1omSD8-C_DSM5FCUJm9fxuF8JRUl3KXUqJsmbU');"></div>
+</div>
+<div class="w-full h-px bg-black"></div>
+<p class="text-xs font-bold text-black mt-1">આચાર્યશ્રીની સહી</p>
+<p class="text-[10px] text-gray-500 font-medium">(સિક્કો)</p>
+</div>
+</div>
+<!-- Watermark Background -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.04] z-0">
+<span class="material-symbols-outlined text-[180px] text-black">school</span>
+</div>
+</div>
+<div class="h-6 w-full shrink-0"></div> <!-- Spacer -->
+</div>
+<!-- Bottom Action Bar -->
+<div class="w-full bg-white dark:bg-[#101922] border-t border-gray-100 dark:border-gray-800 p-4 pb-8 sm:pb-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-20 shrink-0">
+<div class="flex gap-4 max-w-md mx-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-12 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-white/5 text-[#111418] dark:text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-gray-50 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">print</span>
+<span>Print</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 h-12 rounded-lg bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Download PDF</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

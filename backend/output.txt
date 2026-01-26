@@ -1,0 +1,4 @@
+User created successfully:
+Username: admin
+Password: admin
+Role: ADMIN

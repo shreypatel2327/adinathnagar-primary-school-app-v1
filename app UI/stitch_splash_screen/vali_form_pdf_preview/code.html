@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vali Form PDF Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#2b8cee",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+            },
+            fontFamily: {
+              "display": ["Public Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .paper-shadow {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .bilingual-label {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+        .data-text {
+            font-weight: 600;
+            color: #111418;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 flex items-center bg-white dark:bg-[#1a252f] p-4 border-b border-gray-100 dark:border-gray-800 justify-between">
+<div class="flex items-center gap-3">
+<div class="text-[#111418] dark:text-white flex size-10 shrink-0 items-center justify-center cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Vali Form Preview</h2>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-transparent text-[#111418] dark:text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Document Area -->
+<main class="flex-1 overflow-y-auto p-4 md:p-8 flex justify-center">
+<!-- PDF "Paper" Sheet -->
+<div class="w-full max-w-[600px] bg-white dark:bg-white p-6 md:p-10 paper-shadow border border-gray-200 min-h-[842px] flex flex-col relative">
+<!-- Document Header -->
+<div class="flex flex-col items-center mb-6">
+<!-- AMC Logo Placeholder -->
+<div class="w-16 h-16 mb-4 bg-contain bg-center bg-no-repeat" data-alt="Ahmedabad Municipal Corporation Official Logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtnqg8d5B9NzKzO1fHvkvnxK3LIx3l-rfhFOH6LJnv_ttkekckaLLBjPwtb8OTmOXvh5aSL_x2bbNazYpoqDPNpS_eMhoD8js749WMDOJXz9dvPhrFr9NS_A7JS5ltFgIDLzJr0PsgLJpZBv91yPgT8u6Lfv-FX-8cMOt5CF5x0v8jJDdpXQsPhvvbf735v3FxvazlYKseP9VqwRJCQxSF3Mgl3gGA48MrwytL-T7rIcHqh7x6H4OY5frEnEJuNx79X2KKtUZMsRc');"></div>
+<h1 class="text-[#111418] text-xl font-extrabold text-center leading-tight">Adinathnagar Primary School</h1>
+<p class="text-[#111418] text-sm font-semibold uppercase tracking-wide mt-1">Ahmedabad Municipal Corporation</p>
+<div class="w-full h-px bg-black my-4 opacity-10"></div>
+<h2 class="text-[#111418] text-lg font-bold text-center underline underline-offset-4">Parental Consent Form (વાલી સંમતિ પત્ર)</h2>
+<div class="mt-4 bg-primary/10 px-3 py-1 rounded text-primary text-xs font-bold tracking-wider">
+                    FORM NO: #VALI-2024-0802
+                </div>
+</div>
+<!-- Meta Info (Date in Gujarati) -->
+<div class="flex justify-end mb-6">
+<p class="text-sm font-medium text-gray-800">
+                    તારીખ: <span class="border-b border-dotted border-black px-2">બાવીસ જૂન બે હજાર ચોવીસ</span>
+</p>
+</div>
+<!-- Form Body Table -->
+<div class="border-2 border-black">
+<!-- Row 1 -->
+<div class="flex border-b border-black">
+<div class="w-1/2 p-3 border-r border-black">
+<p class="bilingual-label">વિદ્યાર્થીનું નામ / Student Name</p>
+<p class="data-text">પટેલ આર્યન કિરણકુમાર</p>
+</div>
+<div class="w-1/2 p-3">
+<p class="bilingual-label">જી.આર. નંબર / G.R. Number</p>
+<p class="data-text">14526/2023</p>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="flex border-b border-black">
+<div class="w-1/3 p-3 border-r border-black">
+<p class="bilingual-label">ધોરણ / Std</p>
+<p class="data-text">6 (છઠ્ઠું)</p>
+</div>
+<div class="w-1/3 p-3 border-r border-black">
+<p class="bilingual-label">વર્ગ / Div</p>
+<p class="data-text">A</p>
+</div>
+<div class="w-1/3 p-3">
+<p class="bilingual-label">રોલ નં / Roll No</p>
+<p class="data-text">24</p>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="p-3 border-b border-black">
+<p class="bilingual-label">વાલીનું નામ / Parent's Name</p>
+<p class="data-text">કિરણકુમાર રમણલાલ પટેલ</p>
+</div>
+<!-- Row 4 -->
+<div class="flex">
+<div class="w-1/2 p-3 border-r border-black">
+<p class="bilingual-label">સંપર્ક નંબર / Contact No.</p>
+<p class="data-text">+91 98765 43210</p>
+</div>
+<div class="w-1/2 p-3">
+<p class="bilingual-label">બ્લડ ગ્રુપ / Blood Group</p>
+<p class="data-text">O+ Positive</p>
+</div>
+</div>
+</div>
+<!-- Declaration Section -->
+<div class="mt-8">
+<h3 class="font-bold text-sm mb-2 underline">સંમતિ પત્રક (Consent Declaration)</h3>
+<p class="text-sm leading-relaxed text-gray-900 text-justify">
+                    હું નીચે સહી કરનાર વાલી, ઉપર જણાવેલ મારા પાલ્યને શાળાના શૈક્ષણિક પ્રવાસ/પ્રવૃત્તિમાં સામેલ કરવા માટે રાજીખુશીથી સંમતિ આપું છું. શાળા દ્વારા આપવામાં આવતી સૂચનાઓનું મારો પાલ્ય પાલન કરશે તેની હું ખાતરી આપું છું.
+                </p>
+<p class="text-[10px] italic mt-2 text-gray-500">
+                    (I, the undersigned parent, voluntarily consent to include my ward in the school educational trip/activity. I ensure that my ward will follow the instructions provided by the school.)
+                </p>
+</div>
+<!-- Signatures -->
+<div class="mt-16 flex justify-between">
+<div class="text-center w-40">
+<div class="h-px bg-black w-full mb-2"></div>
+<p class="text-xs font-bold">વાલીની સહી</p>
+<p class="text-[10px] text-gray-500">Parent's Signature</p>
+</div>
+<div class="text-center w-40">
+<div class="h-px bg-black w-full mb-2"></div>
+<p class="text-xs font-bold">આચાર્યશ્રીનો સિક્કો</p>
+<p class="text-[10px] text-gray-500">Principal's Stamp</p>
+</div>
+</div>
+<!-- Footer Small Print -->
+<div class="mt-auto pt-10 text-[9px] text-gray-400 text-center uppercase tracking-tighter">
+                Generated by Vali-Connect Portal | AMC Education Board | System IP: 192.168.1.104
+            </div>
+</div>
+</main>
+<!-- Sticky Bottom Action Bar -->
+<div class="p-4 bg-white dark:bg-[#1a252f] border-t border-gray-100 dark:border-gray-800 flex gap-4">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-all">
+<span class="material-symbols-outlined">download</span>
+<span>Download PDF</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-6 bg-white dark:bg-gray-800 text-primary border-2 border-primary font-bold py-4 rounded-xl shadow-sm transition-all">
+<span class="material-symbols-outlined">print</span>
+<span class="hidden sm:inline">Print</span>
+</button>
+</div>
+</body></html>

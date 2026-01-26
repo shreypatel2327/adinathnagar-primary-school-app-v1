@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="gu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Javak Register View</title>
+<!-- Google Fonts: Public Sans & Noto Sans for Gujarati support -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Noto Sans Gujarati", "sans-serif"],
+                        "sans": ["Public Sans", "Noto Sans Gujarati", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Public Sans", "Noto Sans Gujarati", sans-serif;
+        }
+        /* Custom scrollbar for horizontal scrolling elements */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-[#1a2632] shadow-sm">
+<div class="flex items-center justify-between p-4 pb-3">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center rounded-full w-10 h-10 hover:bg-gray-100 dark:hover:bg-gray-800 text-[#111418] dark:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold leading-tight tracking-[-0.015em] text-[#111418] dark:text-white">જાવક રજીસ્ટર</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center rounded-full w-10 h-10 hover:bg-gray-100 dark:hover:bg-gray-800 text-[#111418] dark:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col w-full max-w-md mx-auto md:max-w-3xl">
+<!-- Search Bar -->
+<div class="px-4 py-3 bg-white dark:bg-[#1a2632]">
+<label class="flex flex-col h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-[#dce0e5] dark:border-gray-600 overflow-hidden bg-[#f0f2f4] dark:bg-gray-800">
+<div class="flex items-center justify-center pl-4 pr-2 text-[#617589] dark:text-gray-400">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none bg-transparent text-[#111418] dark:text-white focus:outline-none h-full placeholder:text-[#617589] dark:placeholder:text-gray-500 px-2 text-base font-normal" placeholder="નામ અથવા GR નં. થી શોધો"/>
+</div>
+</label>
+</div>
+<!-- Filter Chips -->
+<div class="bg-white dark:bg-[#1a2632] border-b border-[#e5e7eb] dark:border-gray-700">
+<div class="flex gap-3 px-4 py-3 overflow-x-auto hide-scrollbar">
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white pl-4 pr-4 transition-transform active:scale-95">
+<span class="text-sm font-medium leading-normal">બધા (All)</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#f0f2f4] dark:bg-gray-700 text-[#111418] dark:text-white pl-4 pr-4 transition-colors hover:bg-gray-200 dark:hover:bg-gray-600">
+<span class="text-sm font-medium leading-normal">ધોરણ મુજબ</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+<button class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#f0f2f4] dark:bg-gray-700 text-[#111418] dark:text-white pl-4 pr-4 transition-colors hover:bg-gray-200 dark:hover:bg-gray-600">
+<span class="text-sm font-medium leading-normal">વર્ષ મુજબ</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<!-- Action Bar: Export & Count -->
+<div class="flex flex-col gap-4 p-4">
+<div class="flex justify-between items-center">
+<h3 class="text-[#111418] dark:text-white text-lg font-bold leading-tight">વિદ્યાર્થીઓની યાદી <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-1">(કુલ: ૪૫)</span></h3>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-[#e7f3ec] dark:bg-[#1a3828] text-[#1b8048] dark:text-[#4ade80] gap-2 text-sm font-bold leading-normal tracking-[0.015em] border border-transparent hover:border-[#1b8048]/30 transition-all">
+<span class="material-symbols-outlined text-[18px]">table_view</span>
+<span class="truncate">Excel</span>
+</button>
+</div>
+<!-- Student List Items -->
+<div class="flex flex-col gap-3">
+<!-- Card 1 -->
+<div class="flex flex-col p-4 rounded-xl bg-white dark:bg-[#1a2632] shadow-sm border border-[#e5e7eb] dark:border-gray-700 relative overflow-hidden group">
+<!-- Left Accent Bar -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-red-500"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold text-sm">
+                                ૦૧
+                            </div>
+<div>
+<h4 class="text-base font-bold text-[#111418] dark:text-white leading-tight mb-1">પટેલ આરવ રાજેશભાઈ</h4>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                                    GR: ૪૦૫૨
+                                </span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">છોડ્યા તારીખ</span>
+<span class="text-sm font-bold text-[#111418] dark:text-white">૧૫/૦૬/૨૦૨૩</span>
+</div>
+</div>
+<div class="mt-2 pt-3 border-t border-gray-100 dark:border-gray-700 flex gap-2 items-start">
+<span class="material-symbols-outlined text-gray-400 text-[20px] mt-0.5">school</span>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 dark:text-gray-400">શાળાનું નામ (School Going To)</span>
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">સરકારી પ્રાથમિક શાળા નં. ૨, સુરત</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col p-4 rounded-xl bg-white dark:bg-[#1a2632] shadow-sm border border-[#e5e7eb] dark:border-gray-700 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-400"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold text-sm">
+                                ૦૨
+                            </div>
+<div>
+<h4 class="text-base font-bold text-[#111418] dark:text-white leading-tight mb-1">શાહ દિયા મિતેશકુમાર</h4>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                                    GR: ૪૧૦૨
+                                </span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">છોડ્યા તારીખ</span>
+<span class="text-sm font-bold text-[#111418] dark:text-white">૨૦/૦૪/૨૦૨૩</span>
+</div>
+</div>
+<div class="mt-2 pt-3 border-t border-gray-100 dark:border-gray-700 flex gap-2 items-start">
+<span class="material-symbols-outlined text-gray-400 text-[20px] mt-0.5">school</span>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 dark:text-gray-400">શાળાનું નામ (School Going To)</span>
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">શ્રી સરસ્વતી વિદ્યાલય</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col p-4 rounded-xl bg-white dark:bg-[#1a2632] shadow-sm border border-[#e5e7eb] dark:border-gray-700 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold text-sm">
+                                ૦૩
+                            </div>
+<div>
+<h4 class="text-base font-bold text-[#111418] dark:text-white leading-tight mb-1">પરમાર જય સુરેશભાઈ</h4>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                                    GR: ૩૯૯૮
+                                </span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">છોડ્યા તારીખ</span>
+<span class="text-sm font-bold text-[#111418] dark:text-white">૧૦/૦૧/૨૦૨૩</span>
+</div>
+</div>
+<div class="mt-2 pt-3 border-t border-gray-100 dark:border-gray-700 flex gap-2 items-start">
+<span class="material-symbols-outlined text-gray-400 text-[20px] mt-0.5">school</span>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 dark:text-gray-400">શાળાનું નામ (School Going To)</span>
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">તાલુકા શાળા - વડોદરા</p>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col p-4 rounded-xl bg-white dark:bg-[#1a2632] shadow-sm border border-[#e5e7eb] dark:border-gray-700 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-400"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold text-sm">
+                                ૦૪
+                            </div>
+<div>
+<h4 class="text-base font-bold text-[#111418] dark:text-white leading-tight mb-1">રાઠોડ પ્રિયા</h4>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                                    GR: ૪૨૦૧
+                                </span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">છોડ્યા તારીખ</span>
+<span class="text-sm font-bold text-[#111418] dark:text-white">૦૫/૦૧/૨૦૨૩</span>
+</div>
+</div>
+<div class="mt-2 pt-3 border-t border-gray-100 dark:border-gray-700 flex gap-2 items-start">
+<span class="material-symbols-outlined text-gray-400 text-[20px] mt-0.5">school</span>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 dark:text-gray-400">શાળાનું નામ (School Going To)</span>
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">અન્ય રાજ્યમાં સ્થળાંતર</p>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="flex flex-col p-4 rounded-xl bg-white dark:bg-[#1a2632] shadow-sm border border-[#e5e7eb] dark:border-gray-700 relative overflow-hidden group">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></div>
+<div class="flex justify-between items-start mb-2">
+<div class="flex gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold text-sm">
+                                ૦૫
+                            </div>
+<div>
+<h4 class="text-base font-bold text-[#111418] dark:text-white leading-tight mb-1">જોશી મનન</h4>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                                    GR: ૪૦૧૦
+                                </span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">છોડ્યા તારીખ</span>
+<span class="text-sm font-bold text-[#111418] dark:text-white">૨૨/૧૨/૨૦૨૨</span>
+</div>
+</div>
+<div class="mt-2 pt-3 border-t border-gray-100 dark:border-gray-700 flex gap-2 items-start">
+<span class="material-symbols-outlined text-gray-400 text-[20px] mt-0.5">school</span>
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 dark:text-gray-400">શાળાનું નામ (School Going To)</span>
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">આદર્શ નિવાસી શાળા</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Loading/Pagination -->
+<div class="flex justify-center py-4">
+<div class="h-1.5 w-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-1"></div>
+<div class="h-1.5 w-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-1"></div>
+<div class="h-1.5 w-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-1"></div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (Optional for Adding New Javak Entry) -->
+<div class="fixed bottom-6 right-6 z-40">
+<button class="flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:bg-blue-600 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+</body></html>

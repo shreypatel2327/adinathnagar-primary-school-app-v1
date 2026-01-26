@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Javak Confirmation Modal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;700&amp;family=Public+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Noto Sans Gujarati", "sans-serif"],
+                        "sans": ["Public Sans", "Noto Sans Gujarati", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar to hide it for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-[#111418] dark:text-white">
+<!-- Main Container -->
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Header (Context Background) -->
+<header class="flex items-center justify-between px-4 py-3 bg-white dark:bg-[#1a202c] border-b border-[#e5e7eb] dark:border-gray-700 z-0">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[#111418] dark:text-white">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold text-[#111418] dark:text-white">વર્ગ ૮-અ - હાજરી પત્રક</h1>
+</div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[#111418] dark:text-white">more_vert</span>
+</button>
+</header>
+<!-- Student List (Context Background) -->
+<div aria-hidden="true" class="flex-1 overflow-y-auto px-4 py-4 z-0 opacity-40 blur-[1px] pointer-events-none select-none">
+<!-- Student Item 1 -->
+<div class="flex items-center gap-4 py-3 border-b border-[#e5e7eb] dark:border-gray-700">
+<img alt="Student portrait" class="w-12 h-12 rounded-full object-cover" data-alt="Portrait of a young student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcqt3He-RiVZdE8hwiJ6_SKyoZ32Bo424wgN35vwJXZLC_0erXQjRw8Kz4-wWVO3bOBQMWd0DKOCKTXwpUUyfIo9cPyeH85iAtUi6sIanGHo8RYiCTsqq9B2YK1hXy8Gc7ohM5DC1M6MXdaqGZnltegpjiFD8nzG0GkgIxLMqobxQESKZl_nBZdPAyHl6WkJW9_HwSklrkAENINbO8tkMUWVAdcZOn8nVmDPOTfln6UQdTxyk8l7W8mBcf8OfOqidQbGzXemXquoY"/>
+<div class="flex-1">
+<h3 class="font-medium text-[#111418] dark:text-white">આરવ પટેલ</h3>
+<p class="text-sm text-[#637588] dark:text-gray-400">રોલ નં: ૧</p>
+</div>
+</div>
+<!-- Student Item 2 -->
+<div class="flex items-center gap-4 py-3 border-b border-[#e5e7eb] dark:border-gray-700">
+<div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary font-bold">
+<span>વિ</span>
+</div>
+<div class="flex-1">
+<h3 class="font-medium text-[#111418] dark:text-white">વિહાન શાહ</h3>
+<p class="text-sm text-[#637588] dark:text-gray-400">રોલ નં: ૨</p>
+</div>
+</div>
+<!-- Student Item 3 -->
+<div class="flex items-center gap-4 py-3 border-b border-[#e5e7eb] dark:border-gray-700">
+<img alt="Student portrait" class="w-12 h-12 rounded-full object-cover" data-alt="Side profile of a student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV_zS7S3tCB3cca2y2UbkSlFAItSob7eyxikX01HXoUa-XFAq7R6yXVI4lPLqrIVE0WkzsTKA6f3lFtx4eAv4JSCgrXEc8fJkmyshnR8yJB20a_2UuQ5z5SPtDACDurtUlIiv8YIk26PJ_g2wrEOuW-Igay11gMvze__fcSMEqtzWESyHlnNRB9f0_xemyXV4k74-enksb8BZmr9Z4wQHM8mXHsPYO_qmbjpKyKKZ498qKHrtZ9V3nnnMKsx-AhtrpaabCPHsrrj0"/>
+<div class="flex-1">
+<h3 class="font-medium text-[#111418] dark:text-white">દિયા મહેતા</h3>
+<p class="text-sm text-[#637588] dark:text-gray-400">રોલ નં: ૩</p>
+</div>
+</div>
+<!-- Student Item 4 -->
+<div class="flex items-center gap-4 py-3 border-b border-[#e5e7eb] dark:border-gray-700">
+<img alt="Student portrait" class="w-12 h-12 rounded-full object-cover" data-alt="Student looking at camera with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2saGQAgDgTu_Ueuf7Y_1AhiWilbXovU52VSNNnTL30HL3vNZaPT9pcEyZHW9BKdTDwEwunbHl6p-rxwn4IoAakBrx1NWl7Bmwz97NTeocgQEFuXpPzMeh3rm3b19pRdRcIEH_U36V7soq8sZjeR61VzTTadUVt3YKBZPwDue1yvvZXY5wveAmka6HFISiacK6DfvBfX-3fbeEZTclZ2fQVTUwLiD4CQoeJlY0HmKQ1gWnwFS2ddWK-JBr0Y3uXs8LdsEk9NIMDOQ"/>
+<div class="flex-1">
+<h3 class="font-medium text-[#111418] dark:text-white">કાવ્યા જોશી</h3>
+<p class="text-sm text-[#637588] dark:text-gray-400">રોલ નં: ૪</p>
+</div>
+</div>
+<!-- Student Item 5 -->
+<div class="flex items-center gap-4 py-3 border-b border-[#e5e7eb] dark:border-gray-700">
+<div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 font-bold">
+<span>ર</span>
+</div>
+<div class="flex-1">
+<h3 class="font-medium text-[#111418] dark:text-white">રિયા શર્મા</h3>
+<p class="text-sm text-[#637588] dark:text-gray-400">રોલ નં: ૫</p>
+</div>
+</div>
+</div>
+<!-- MODAL OVERLAY -->
+<div class="fixed inset-0 z-50 flex items-end justify-center sm:items-center bg-black/60 backdrop-blur-sm p-4 sm:p-6 transition-opacity duration-300">
+<!-- MODAL CONTENT CARD -->
+<div class="w-full max-w-[400px] bg-white dark:bg-[#1a202c] rounded-t-2xl sm:rounded-2xl shadow-2xl overflow-hidden transform transition-all flex flex-col max-h-[90vh]">
+<!-- HeadlineText -->
+<div class="relative flex w-full flex-col pt-6 pb-2 px-6 text-center">
+<div class="w-12 h-12 rounded-full bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400 flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined" style="font-size: 28px;">person_remove</span>
+</div>
+<h3 class="text-[#111418] dark:text-white tracking-tight text-xl font-bold leading-tight">વિદ્યાર્થી કમી કરો</h3>
+</div>
+<!-- BodyText -->
+<div class="w-full flex-col">
+<p class="text-[#637588] dark:text-gray-400 text-sm font-normal leading-normal pb-4 px-6 text-center">કૃપા કરીને નીચેની વિગતો ભરો</p>
+</div>
+<!-- Scrollable Content Area -->
+<div class="w-full overflow-y-auto px-6 pb-2 no-scrollbar">
+<!-- TextField 1: School Name -->
+<div class="flex w-full flex-col gap-1 pb-4">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal pb-2">જનાર શાળાનું નામ</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white dark:bg-[#2d3748] focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-gray-600 bg-white focus:border-primary h-12 placeholder:text-[#93a2b7] p-[15px] text-base font-normal leading-normal transition-all" placeholder="શાળાનું નામ લખો..." value=""/>
+</label>
+</div>
+<!-- TextField 2: Date Picker -->
+<div class="flex w-full flex-col gap-1 pb-2">
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal pb-2">કમી કર્યા તારીખ</p>
+<div class="flex w-full flex-1 items-stretch rounded-lg shadow-sm">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-[#111418] dark:text-white dark:bg-[#2d3748] focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe0e6] dark:border-gray-600 bg-white focus:border-primary h-12 placeholder:text-[#93a2b7] p-[15px] border-r-0 text-base font-normal leading-normal transition-all" placeholder="DD/MM/YYYY" type="text" value="25/10/2023"/>
+<div class="text-[#637588] dark:text-gray-400 flex border border-[#dbe0e6] dark:border-gray-600 dark:bg-[#2d3748] bg-gray-50 items-center justify-center px-4 rounded-r-lg border-l-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- ButtonGroup -->
+<div class="w-full bg-white dark:bg-[#1a202c] p-6 pt-4 border-t border-transparent dark:border-gray-700/50 mt-auto">
+<div class="flex gap-3 justify-between">
+<!-- Cancel Button -->
+<button class="flex-1 cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-white dark:bg-transparent border border-[#dbe0e6] dark:border-gray-600 text-[#111418] dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">રદ કરો</span>
+</button>
+<!-- Confirm Button -->
+<button class="flex-1 cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary hover:bg-blue-600 transition-colors text-white shadow-md shadow-blue-500/20 text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">પુષ્ટિ કરો</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
