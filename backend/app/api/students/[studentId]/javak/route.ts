@@ -31,12 +31,19 @@ export async function PATCH(
 
         // Audit Log
         try {
-            await db.systemLog.create({
-                data: {
-                    action: "JAVAK_MARKED",
-                    details: `Student ${updatedStudent.firstName} ${updatedStudent.lastName} (GR: ${updatedStudent.grNo}) marked as Javak. Dest: ${destinationSchool}`,
-                }
-            });
+            // Fetch a system user or admin to attribute this action to, since we don't have auth context here
+            const systemUser = await db.user.findFirst({ where: { role: 'ADMIN' } });
+
+            if (systemUser) {
+                await db.systemLog.create({
+                    data: {
+                        userId: systemUser.id,
+                        actionType: "JAVAK_MARKED",
+                        title: "Student Javak",
+                        description: `Student ${updatedStudent.firstName} ${updatedStudent.lastName} (GR: ${updatedStudent.grNo}) marked as Javak. Dest: ${destinationSchool}`,
+                    }
+                });
+            }
         } catch (e) {
             console.warn("Failed to create audit log", e);
         }
