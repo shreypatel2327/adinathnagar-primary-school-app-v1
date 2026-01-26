@@ -22,6 +22,7 @@ const req = https.request(options, (res) => {
 
     res.on('data', (d) => {
         process.stdout.write(d);
+        console.log('\nResponse:', d.toString());
     });
 });
 
