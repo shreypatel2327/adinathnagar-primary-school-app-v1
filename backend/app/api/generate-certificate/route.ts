@@ -5,6 +5,11 @@ import puppeteer from "puppeteer";
 export const dynamic = 'force-dynamic';
 import { getBonafideHtml, getValiFormHtml } from "../../../lib/certificate-generator";
 
+// Explicit OPTIONS for CORS preflight
+export async function OPTIONS() {
+    return NextResponse.json({}, { status: 200 });
+}
+
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
