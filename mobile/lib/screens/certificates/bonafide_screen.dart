@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:pdf/pdf.dart'; // For kIsWeb, defaultTargetPlatform
+import 'package:mobile/services/api_service.dart';
 
 class BonafideCertificateScreen extends StatefulWidget {
   final Map<String, dynamic> student;
@@ -21,10 +22,9 @@ class BonafideCertificateScreen extends StatefulWidget {
 class _BonafideCertificateScreenState extends State<BonafideCertificateScreen> {
 
   // Host selection helper
+  // Host selection helper
   String get _baseUrl {
-    if (kIsWeb) return 'http://localhost:3000';
-    if (defaultTargetPlatform == TargetPlatform.android) return 'http://10.0.2.2:3000';
-    return 'http://localhost:3000'; // Windows, iOS Simulator
+    return ApiService.baseUrl;
   }
 
   @override

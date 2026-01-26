@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:pdf/pdf.dart';
+import 'package:mobile/services/api_service.dart';
 
 class ValiFormScreen extends StatefulWidget {
   final Map<String, dynamic> student;
@@ -21,9 +22,7 @@ class ValiFormScreen extends StatefulWidget {
 class _ValiFormScreenState extends State<ValiFormScreen> {
 
   String get _baseUrl {
-    if (kIsWeb) return 'http://localhost:3000';
-    if (defaultTargetPlatform == TargetPlatform.android) return 'http://10.0.2.2:3000';
-    return 'http://localhost:3000';
+ return ApiService.baseUrl;
   }
 
   @override

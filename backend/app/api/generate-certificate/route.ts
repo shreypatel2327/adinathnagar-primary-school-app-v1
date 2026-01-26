@@ -1,6 +1,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import puppeteer from "puppeteer";
+
+export const dynamic = 'force-dynamic';
 import { getBonafideHtml, getValiFormHtml } from "../../../lib/certificate-generator";
 
 export async function POST(req: NextRequest) {
