@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
         await browser.close();
 
         // Return PDF
-        return new NextResponse(pdfBuffer, {
+        return new NextResponse(pdfBuffer as any, {
             headers: {
                 "Content-Type": "application/pdf",
                 "Content-Disposition": `inline; filename="${certificateType}.pdf"`,
