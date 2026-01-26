@@ -2,6 +2,8 @@ import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+export const dynamic = 'force-dynamic';
+
 // Strict validation schema
 const studentSchema = z.object({
     standard: z.coerce.number().min(0, "Standard is required"),
