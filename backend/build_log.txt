@@ -1,0 +1,60 @@
+
+> school-app@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.3
+  - Environments: .env
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/16) ...
+Logs Fetch Error: q [Error]: Dynamic server usage: Route /api/logs couldn't be rendered statically because it accessed `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at Object.get (D:\school-app-version1\backend\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:37835)
+    at l (D:\school-app-version1\backend\.next\server\app\api\logs\route.js:1:590)
+    at D:\school-app-version1\backend\node_modules\next\dist\compiled\next-server\app-route.runtime.prod.js:6:34672
+    at D:\school-app-version1\backend\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (D:\school-app-version1\backend\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (D:\school-app-version1\backend\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NoopTracer.startActiveSpan (D:\school-app-version1\backend\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18093)
+    at ProxyTracer.startActiveSpan (D:\school-app-version1\backend\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18854)
+    at D:\school-app-version1\backend\node_modules\next\dist\server\lib\trace\tracer.js:122:103
+    at NoopContextManager.with (D:\school-app-version1\backend\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062) {
+  description: "Route /api/logs couldn't be rendered statically because it accessed `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (4/16) 
+   Generating static pages (8/16) 
+   Generating static pages (12/16) 
+ Γ£ô Generating static pages (16/16)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Γöî Γùï /                                    1.56 kB        88.5 kB
+Γö£ Γùï /_not-found                          871 B          87.9 kB
+Γö£ Γùï /admin/dashboard                     2.38 kB        96.2 kB
+Γö£ Γùï /admin/students                      2.26 kB        96.1 kB
+Γö£ Γùï /admin/students/add                  2.54 kB        89.5 kB
+Γö£ Γùï /api/aavak-register                  0 B                0 B
+Γö£ Γùï /api/dashboard/stats                 0 B                0 B
+Γö£ ╞Æ /api/generate-certificate            0 B                0 B
+Γö£ Γùï /api/javak-register                  0 B                0 B
+Γö£ ╞Æ /api/login                           0 B                0 B
+Γö£ ╞Æ /api/logs                            0 B                0 B
+Γö£ ╞Æ /api/students                        0 B                0 B
+Γö£ ╞Æ /api/students/[studentId]            0 B                0 B
+Γö£ ╞Æ /api/students/[studentId]/javak      0 B                0 B
+Γö£ ╞Æ /api/teachers                        0 B                0 B
+Γö£ ╞Æ /api/teachers/[id]                   0 B                0 B
+Γöö Γùï /login                               24.4 kB         118 kB
++ First Load JS shared by all            87 kB
+  Γö£ chunks/23-2bd87d967c3007cf.js        31.5 kB
+  Γö£ chunks/fd9d1056-d3baaae3d3953a48.js  53.6 kB
+  Γöö other shared chunks (total)          1.89 kB
+
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
