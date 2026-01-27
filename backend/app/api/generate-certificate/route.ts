@@ -59,11 +59,12 @@ export async function POST(req: NextRequest) {
 
                 // IMPORTANT: Provide the remote pack URL for the binary
                 // Using the specific version matching package.json (v131.0.1)
-                chromium.setRemotePack("https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar");
+                // chromium.setRemotePack("..."); // REMOVED - Invalid API
 
                 chromium.setGraphicsMode = false;
 
-                executablePath = await chromium.executablePath();
+                // Pass the pack URL directly to executablePath
+                executablePath = await chromium.executablePath("https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar");
                 launchArgs = chromium.args;
                 headlessMode = chromium.headless;
             } else {
