@@ -12,7 +12,6 @@ export async function OPTIONS() {
 }
 
 function getLocalChromePath(): string | undefined {
-    // ... [Same helper as before] ...
     const platform = os.platform();
     let possiblePaths: string[] = [];
     if (platform === 'win32') {
@@ -56,24 +55,29 @@ export async function POST(req: NextRequest) {
             if (isProduction) {
                 const chromium = require("@sparticuz/chromium-min");
 
-                // 1. Pass the remote pack URL explicitly
-                const packUrl = "https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar";
+                // Use specific v119.0.2 remote pack as requested
+                const packUrl = "https://github.com/Sparticuz/chromium/releases/download/v119.0.2/chromium-v119.0.2-pack.tar";
 
-                // 2. Configure Chromium
                 chromium.setGraphicsMode = false;
 
-                // 3. Resolve executable path
+                // Resolve executable path with the remote pack
                 executablePath = await chromium.executablePath(packUrl);
 
+                // Inject LD_LIBRARY_PATH just in case (Proven fix for Code 127)
                 if (executablePath) {
                     const chromeDir = path.dirname(executablePath);
                     process.env.LD_LIBRARY_PATH = `${chromeDir}:${process.env.LD_LIBRARY_PATH || ''}`;
                     console.log(`[Vercel] Set LD_LIBRARY_PATH to include: ${chromeDir}`);
-                } else {
-                    console.warn("Chromium executablePath is undefined, skipping LD_LIBRARY_PATH injection");
                 }
 
-                launchArgs = chromium.args;
+                // Exact flags requested by user
+                launchArgs = [
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-gpu',
+                    ...chromium.args.filter((arg: string) => !['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'].includes(arg)) // Merge safely
+                ];
                 headlessMode = chromium.headless;
             } else {
                 executablePath = getLocalChromePath();
@@ -89,26 +93,11 @@ export async function POST(req: NextRequest) {
                 executablePath: executablePath,
                 headless: headlessMode,
                 ignoreHTTPSErrors: true,
-                dumpio: true, // Log stdout/stderr from browser process
-                env: {
-                    ...process.env,
-                    LD_LIBRARY_PATH: process.env.LD_LIBRARY_PATH
-                }
+                dumpio: true,
             });
 
-            // DEBUG: Check what is in /tmp
-            try {
-                const tmpFiles = fs.readdirSync('/tmp');
-                console.log('[DEBUG] Files in /tmp:', tmpFiles);
-                if (executablePath) {
-                    const execDir = path.dirname(executablePath);
-                    console.log(`[DEBUG] Files in execDir (${execDir}):`, fs.readdirSync(execDir));
-                }
-            } catch (e) {
-                console.error('[DEBUG] Failed to list /tmp:', e);
-            }
-
             page = await browser.newPage();
+            // Networkidle0 is critical for fonts
             await page.setContent(htmlContent, { waitUntil: "networkidle0" });
             const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
 
