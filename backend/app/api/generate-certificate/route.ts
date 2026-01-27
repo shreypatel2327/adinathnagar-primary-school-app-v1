@@ -83,11 +83,8 @@ export async function POST(req: NextRequest) {
 
                 executablePath = await chromium.executablePath();
 
-                // For version 119, standard args are usually sufficient
-                launchArgs = [
-                    ...chromium.args,
-                    '--disable-gpu',
-                ];
+                // Use standard args for v131+ on AL2023
+                launchArgs = chromium.args;
                 headlessMode = chromium.headless;
             } else {
                 // Local Development
