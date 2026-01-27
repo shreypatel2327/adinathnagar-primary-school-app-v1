@@ -89,12 +89,24 @@ export async function POST(req: NextRequest) {
                 executablePath: executablePath,
                 headless: headlessMode,
                 ignoreHTTPSErrors: true,
-                // Explicitly pass env if needed, though process.env should inherit
+                dumpio: true, // Log stdout/stderr from browser process
                 env: {
                     ...process.env,
                     LD_LIBRARY_PATH: process.env.LD_LIBRARY_PATH
                 }
             });
+
+            // DEBUG: Check what is in /tmp
+            try {
+                const tmpFiles = fs.readdirSync('/tmp');
+                console.log('[DEBUG] Files in /tmp:', tmpFiles);
+                if (executablePath) {
+                    const execDir = path.dirname(executablePath);
+                    console.log(`[DEBUG] Files in execDir (${execDir}):`, fs.readdirSync(execDir));
+                }
+            } catch (e) {
+                console.error('[DEBUG] Failed to list /tmp:', e);
+            }
 
             page = await browser.newPage();
             await page.setContent(htmlContent, { waitUntil: "networkidle0" });
