@@ -69,7 +69,6 @@ export async function POST(req: NextRequest) {
             // Check if running on Vercel
             const isProduction = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
 
-            // Use puppeteer-core for both, but different executable paths
             const puppeteer = require("puppeteer-core");
             let executablePath: string | undefined;
             let launchArgs: string[] = [];
@@ -80,15 +79,23 @@ export async function POST(req: NextRequest) {
                 const chromium = require("@sparticuz/chromium");
 
                 // Configure Chromium for Vercel
-                chromium.setGraphicsMode = false;
-                // chromium.setHeadlessMode = true; // Use default if uncertain or check docs for 127
+                // chromium.setGraphicsMode = false; // Deprecated in newer versions, checking docs is key but standard flags help
 
                 executablePath = await chromium.executablePath();
-                launchArgs = chromium.args;
+
+                // Aggressive flags for Vercel/Lambda environment
+                launchArgs = [
+                    ...chromium.args,
+                    '--disable-gpu',
+                    '--disable-dev-shm-usage',
+                    '--disable-setuid-sandbox',
+                    '--no-sandbox',
+                    '--no-zygote',
+                    '--single-process', // Sometimes helps in strict memory limits
+                ];
                 headlessMode = chromium.headless;
             } else {
                 // Local Development
-                // Find local Chrome
                 executablePath = getLocalChromePath();
                 if (!executablePath) {
                     throw new Error("Local Chrome/Edge executable not found. Please install Chrome or Edge.");
@@ -102,7 +109,7 @@ export async function POST(req: NextRequest) {
                 args: launchArgs,
                 defaultViewport: { width: 794, height: 1123 }, // A4 Size in px
                 executablePath: executablePath,
-                headless: headlessMode || true,
+                headless: headlessMode,
                 ignoreHTTPSErrors: true,
             });
 
@@ -110,7 +117,7 @@ export async function POST(req: NextRequest) {
 
             // Set content and STRICTLY wait for fonts to load
             await page.setContent(htmlContent, {
-                waitUntil: "networkidle0", // Wait for all network connections (fonts) to finish
+                waitUntil: "networkidle0",
             });
 
             // Generate PDF
