@@ -54,17 +54,26 @@ export async function POST(req: NextRequest) {
             let headlessMode: boolean | "shell" = true;
 
             if (isProduction) {
-                // Configure Chromium for Vercel with Min Pack
                 const chromium = require("@sparticuz/chromium-min");
 
-                // IMPORTANT: Provide the remote pack URL for the binary
-                // Using the specific version matching package.json (v131.0.1)
-                // chromium.setRemotePack("..."); // REMOVED - Invalid API
+                // 1. Pass the remote pack URL explicitly
+                const packUrl = "https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar";
 
+                // 2. Configure Chromium
                 chromium.setGraphicsMode = false;
 
-                // Pass the pack URL directly to executablePath
-                executablePath = await chromium.executablePath("https://github.com/Sparticuz/chromium/releases/download/v131.0.1/chromium-v131.0.1-pack.tar");
+                // 3. Resolve executable path
+                executablePath = await chromium.executablePath(packUrl);
+
+                // 4. CRITICAL: Inject LD_LIBRARY_PATH for missing libs on Vercel Node 20
+                // The pack extracts libraries to the same folder as the binary (or a 'lib' subfolder depending on pack structure)
+                // Typically for Sparticuz, it's the folder of the executable.
+                // We add this folder to the LD_LIBRARY_PATH environment variable so the dynamic linker finds libnss3.so etc.
+                const chromeDir = path.dirname(executablePath);
+                process.env.LD_LIBRARY_PATH = `${chromeDir}:${process.env.LD_LIBRARY_PATH || ''}`;
+
+                console.log(`[Vercel] Set LD_LIBRARY_PATH to include: ${chromeDir}`);
+
                 launchArgs = chromium.args;
                 headlessMode = chromium.headless;
             } else {
@@ -81,6 +90,11 @@ export async function POST(req: NextRequest) {
                 executablePath: executablePath,
                 headless: headlessMode,
                 ignoreHTTPSErrors: true,
+                // Explicitly pass env if needed, though process.env should inherit
+                env: {
+                    ...process.env,
+                    LD_LIBRARY_PATH: process.env.LD_LIBRARY_PATH
+                }
             });
 
             page = await browser.newPage();
