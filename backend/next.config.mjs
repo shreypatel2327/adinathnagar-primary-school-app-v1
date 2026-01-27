@@ -8,6 +8,9 @@ const nextConfig = {
             }
         ]
     },
+    experimental: {
+        serverComponentsExternalPackages: ['puppeteer-core', '@sparticuz/chromium'],
+    },
     async headers() {
         return [
             {
