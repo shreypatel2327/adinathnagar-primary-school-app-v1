@@ -37,8 +37,8 @@ export async function POST(req: NextRequest) {
                 const puppeteer = require("puppeteer-core");
 
                 // Configure Chromium for Vercel
-                // chromium.setHeadlessMode = true; // explicitly set headless if needed, though usually default
-                // chromium.setGraphicsMode = false;
+                chromium.setGraphicsMode = false;
+                chromium.setHeadlessMode = true;
 
                 browser = await puppeteer.launch({
                     args: chromium.args,
