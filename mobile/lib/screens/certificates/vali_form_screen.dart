@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:pdf/pdf.dart';
 import 'package:mobile/services/api_service.dart';
 import 'package:mobile/services/pdf_helper.dart';
+import 'package:mobile/services/pdf_service.dart';
 
 class ValiFormScreen extends StatefulWidget {
   final Map<String, dynamic> student;
@@ -120,6 +121,6 @@ class _ValiFormScreenState extends State<ValiFormScreen> {
   }
 
   Future<Uint8List> _generatePdf(PdfPageFormat format) async {
-    return ApiService().generateCertificate('vali-form', widget.student);
+    return PdfService.generateValiFormPdf(widget.student);
   }
 }

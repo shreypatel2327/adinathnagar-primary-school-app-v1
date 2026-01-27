@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:pdf/pdf.dart'; // For kIsWeb, defaultTargetPlatform
 import 'package:mobile/services/api_service.dart';
 import 'package:mobile/services/pdf_helper.dart';
+import 'package:mobile/services/pdf_service.dart';
 
 class BonafideCertificateScreen extends StatefulWidget {
   final Map<String, dynamic> student;
@@ -122,7 +123,7 @@ class _BonafideCertificateScreenState extends State<BonafideCertificateScreen> {
   }
 
   Future<Uint8List> _generatePdf(PdfPageFormat format) async {
-    return ApiService().generateCertificate('bonafide', widget.student);
+    return PdfService.generateBonafidePdf(widget.student);
   }
 }
 
