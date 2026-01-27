@@ -1,12 +1,47 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getBonafideHtml, getValiFormHtml } from "../../../lib/certificate-generator";
+import path from 'path';
+import fs from 'fs';
+import os from 'os';
 
 export const dynamic = 'force-dynamic';
-export const maxDuration = 60; // Set max duration for Vercel Function (if on Pro plan, otherwise 10s might be tight but PDF gen is usually fast enough).
+export const maxDuration = 60;
 
 // Explicit OPTIONS for CORS preflight
 export async function OPTIONS() {
     return NextResponse.json({}, { status: 200 });
+}
+
+// Function to find local Chrome path
+function getLocalChromePath(): string | undefined {
+    const platform = os.platform();
+    let possiblePaths: string[] = [];
+
+    if (platform === 'win32') {
+        possiblePaths = [
+            "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+            process.env.LOCALAPPDATA + "\\Google\\Chrome\\Application\\chrome.exe",
+            "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",
+            "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        ];
+    } else if (platform === 'darwin') {
+        possiblePaths = [
+            "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
+        ];
+    } else {
+        possiblePaths = [
+            "/usr/bin/google-chrome",
+            "/usr/bin/chromium",
+            "/usr/bin/chromium-browser"
+        ];
+    }
+
+    for (const p of possiblePaths) {
+        if (p && fs.existsSync(p)) return p;
+    }
+    return undefined;
 }
 
 export async function POST(req: NextRequest) {
@@ -31,36 +66,45 @@ export async function POST(req: NextRequest) {
         let page;
 
         try {
-            if (process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production") {
+            // Check if running on Vercel
+            const isProduction = process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+
+            // Use puppeteer-core for both, but different executable paths
+            const puppeteer = require("puppeteer-core");
+            let executablePath: string | undefined;
+            let launchArgs: string[] = [];
+            let headlessMode: boolean | "shell" = true;
+
+            if (isProduction) {
                 // Production (Vercel)
                 const chromium = require("@sparticuz/chromium");
-                const puppeteer = require("puppeteer-core");
 
                 // Configure Chromium for Vercel
                 chromium.setGraphicsMode = false;
-                chromium.setHeadlessMode = true;
+                // chromium.setHeadlessMode = true; // Use default if uncertain or check docs for 127
 
-                browser = await puppeteer.launch({
-                    args: chromium.args,
-                    defaultViewport: { width: 794, height: 1123 }, // A4 Size in px
-                    executablePath: await chromium.executablePath(),
-                    headless: chromium.headless,
-                    ignoreHTTPSErrors: true,
-                });
+                executablePath = await chromium.executablePath();
+                launchArgs = chromium.args;
+                headlessMode = chromium.headless;
             } else {
                 // Local Development
-                // We utilize the 'puppeteer' package which includes the browser binary
-                const puppeteer = require("puppeteer");
-
-                // You can also specify an executablePath if you want to use a local Chrome
-                // const { executablePath } = require('puppeteer'); 
-
-                browser = await puppeteer.launch({
-                    headless: true,
-                    defaultViewport: { width: 794, height: 1123 }, // A4 Size in px
-                    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-                });
+                // Find local Chrome
+                executablePath = getLocalChromePath();
+                if (!executablePath) {
+                    throw new Error("Local Chrome/Edge executable not found. Please install Chrome or Edge.");
+                }
+                launchArgs = ["--no-sandbox", "--disable-setuid-sandbox"];
             }
+
+            console.log(`Launching browser with executable: ${executablePath}`);
+
+            browser = await puppeteer.launch({
+                args: launchArgs,
+                defaultViewport: { width: 794, height: 1123 }, // A4 Size in px
+                executablePath: executablePath,
+                headless: headlessMode || true,
+                ignoreHTTPSErrors: true,
+            });
 
             page = await browser.newPage();
 
