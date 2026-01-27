@@ -79,19 +79,14 @@ export async function POST(req: NextRequest) {
                 const chromium = require("@sparticuz/chromium");
 
                 // Configure Chromium for Vercel
-                // chromium.setGraphicsMode = false; // Deprecated in newer versions, checking docs is key but standard flags help
+                chromium.setGraphicsMode = false;
 
                 executablePath = await chromium.executablePath();
 
-                // Aggressive flags for Vercel/Lambda environment
+                // For version 119, standard args are usually sufficient
                 launchArgs = [
                     ...chromium.args,
                     '--disable-gpu',
-                    '--disable-dev-shm-usage',
-                    '--disable-setuid-sandbox',
-                    '--no-sandbox',
-                    '--no-zygote',
-                    '--single-process', // Sometimes helps in strict memory limits
                 ];
                 headlessMode = chromium.headless;
             } else {
