@@ -202,5 +202,30 @@ class ApiService {
       throw Exception('$e');
     }
   }
+
+  // Certificate Generation
+  Future<Uint8List> generateCertificate(String type, Map<String, dynamic> studentData) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/generate-certificate'), // Updated endpoint
+        headers: {
+          ...AuthService().headers,
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'certificateType': type,
+          'studentData': studentData,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        return response.bodyBytes;
+      } else {
+        throw Exception('Failed to generate certificate: ${response.body}');
+      }
+    } catch (e) {
+      throw Exception('PDF Generation Error: $e');
+    }
+  }
 }
 

@@ -64,24 +64,26 @@ export function getBonafideHtml(data: any): string {
     <head>
       <meta charset="UTF-8">
       <link href="https://fonts.googleapis.com/css2?family=Mukta+Vaani:wght@400;700&display=swap" rel="stylesheet">
-      <style>
+    <style>
         @page { size: A4 portrait; margin: 10mm; }
-        body { font-family: 'Mukta Vaani', sans-serif; padding: 20px; line-height: 2.5; color: #000; font-size: 18px; }
-        .header { text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 2px; }
+        body { font-family: 'Mukta Vaani', sans-serif; padding: 0; line-height: 2.5; color: #000; font-size: 18px; margin: 0; }
+        .container { border: 3px double black; padding: 25px; height: 97vh; box-sizing: border-box; }
+        .header { text-align: center; font-size: 26px; font-weight: bold; margin-bottom: 5px; }
         .subheader { width: 100%; border-collapse: collapse; margin-top: 10px; }
         .subheader td { font-size: 18px; font-weight: bold; padding: 5px 0; }
         .title-container { position: relative; text-align: center; margin-top: 30px; margin-bottom: 60px; }
-        .main-title { font-size: 22px; font-weight: bold; border-bottom: 2px solid black; display: inline-block; padding-bottom: 2px; }
+        .main-title { font-size: 24px; font-weight: bold; border-bottom: 2px solid black; display: inline-block; padding-bottom: 2px; }
         .photo-box { position: absolute; right: 0; top: -10px; width: 110px; height: 130px; border: 1.5px solid black; text-align: center; line-height: 110px; font-size: 14px; }
         .content { font-size: 20px; text-align: justify; margin-top: 40px; }
-        .line { border-bottom: 1px dotted black; font-weight: bold; padding: 0 5px; display: inline-block; text-align: center; }
+        .line { border-bottom: 1px dotted black; font-weight: bold; padding: 0 10px; display: inline-block; text-align: center; min-width: 50px;}
         .footer-table { width: 100%; margin-top: 80px; }
         .footer-table td { font-size: 18px; font-weight: bold; text-align: center; vertical-align: bottom; }
         .sign-area { margin-top: 10px; border-top: 1.5px solid black; width: 160px; display: inline-block; }
       </style>
     </head>
     <body>
-      <div class="header" style="text-align:center;">નગર પ્રાથમિક શિક્ષણ સમિતિ સંચાલિત</div>
+      <div class="container">
+      <div class="header">નગર પ્રાથમિક શિક્ષણ સમિતિ સંચાલિત</div>
       
       <table class="subheader">
         <tr>
@@ -93,15 +95,15 @@ export function getBonafideHtml(data: any): string {
       <br>
       <div class="title-container">
         <div class="main-title">બોનાફાઈડ સર્ટી / જન્મ તારીખનો દાખલો</div>
-        <div class="photo-box" style="text-align:center;">ફોટો</div>
+        <div class="photo-box">ફોટો</div>
       </div>
 
       <br>
       <div class="content">
-        આથી પ્રમાણપત્ર આપવામાં આવે છે કે શ્રી <span class="line" >${fullName}</span> 
-        અત્રેની પ્રાથમિક શાળામાં ધો. <span class="line" >${std}</span> માં <span class="line" >${status}</span>. 
-        જેમની જન્મ તારીખ <span class="line" >${formattedDob}</span> શબ્દોમાં <span class="line" >${dobWords}</span> 
-        છે. જે શાળાના વયપત્રક નંબર <span class="line" >${grNo}</span> પરથી ખરાઈ કરી લખી આપવામાં આવે છે.
+        આથી પ્રમાણપત્ર આપવામાં આવે છે કે શ્રી <span class="line">${fullName}</span> 
+        અત્રેની પ્રાથમિક શાળામાં ધો. <span class="line">${std}</span> માં <span class="line">${status}</span>. 
+        જેમની જન્મ તારીખ <span class="line">${formattedDob}</span> શબ્દોમાં <span class="line">${dobWords}</span> 
+        છે. જે શાળાના વયપત્રક નંબર <span class="line">${grNo}</span> પરથી ખરાઈ કરી લખી આપવામાં આવે છે.
       </div>
       <br>
       <table class="footer-table">
@@ -111,6 +113,7 @@ export function getBonafideHtml(data: any): string {
           <td width="33%" style="text-align: right;">મુખ્ય શિક્ષકની સહી<br><br><br><div class="sign-area"></div></td>
         </tr>
       </table>
+      </div>
     </body>
   </html>
   `;

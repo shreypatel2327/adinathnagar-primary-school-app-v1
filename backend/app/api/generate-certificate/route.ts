@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getBonafideHtml, getValiFormHtml } from "../../../lib/certificate-generator";
 
 export const dynamic = 'force-dynamic';
+export const maxDuration = 60; // Set max duration for Vercel Function (if on Pro plan, otherwise 10s might be tight but PDF gen is usually fast enough).
 
 // Explicit OPTIONS for CORS preflight
 export async function OPTIONS() {
@@ -27,57 +28,74 @@ export async function POST(req: NextRequest) {
         }
 
         let browser;
+        let page;
 
-        if (process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production") {
-            // Production (Vercel)
-            const chromium = require("@sparticuz/chromium");
-            const puppeteer = require("puppeteer-core");
+        try {
+            if (process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production") {
+                // Production (Vercel)
+                const chromium = require("@sparticuz/chromium");
+                const puppeteer = require("puppeteer-core");
 
-            // Optional: Load fonts if needed (Chromium on Lambda has few fonts)
-            // await chromium.font('https://raw.githack.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSans/NotoSans-Regular.ttf');
+                // Configure Chromium for Vercel
+                // chromium.setHeadlessMode = true; // explicitly set headless if needed, though usually default
+                // chromium.setGraphicsMode = false;
 
-            browser = await puppeteer.launch({
-                args: chromium.args,
-                defaultViewport: chromium.defaultViewport,
-                executablePath: await chromium.executablePath(),
-                headless: chromium.headless,
-                ignoreHTTPSErrors: true,
+                browser = await puppeteer.launch({
+                    args: chromium.args,
+                    defaultViewport: { width: 794, height: 1123 }, // A4 Size in px
+                    executablePath: await chromium.executablePath(),
+                    headless: chromium.headless,
+                    ignoreHTTPSErrors: true,
+                });
+            } else {
+                // Local Development
+                // We utilize the 'puppeteer' package which includes the browser binary
+                const puppeteer = require("puppeteer");
+
+                // You can also specify an executablePath if you want to use a local Chrome
+                // const { executablePath } = require('puppeteer'); 
+
+                browser = await puppeteer.launch({
+                    headless: true,
+                    defaultViewport: { width: 794, height: 1123 }, // A4 Size in px
+                    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+                });
+            }
+
+            page = await browser.newPage();
+
+            // Set content and STRICTLY wait for fonts to load
+            await page.setContent(htmlContent, {
+                waitUntil: "networkidle0", // Wait for all network connections (fonts) to finish
             });
-        } else {
-            // Local Development
-            const puppeteer = require("puppeteer");
-            browser = await puppeteer.launch({
-                headless: true,
-                args: ["--no-sandbox", "--disable-setuid-sandbox"],
+
+            // Generate PDF
+            const pdfBuffer = await page.pdf({
+                format: "A4",
+                printBackground: true,
+                margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },
             });
+
+            await browser.close();
+
+            // Return PDF
+            return new NextResponse(pdfBuffer, {
+                headers: {
+                    "Content-Type": "application/pdf",
+                    "Content-Disposition": `inline; filename="${certificateType}.pdf"`,
+                },
+            });
+        } catch (innerError) {
+            console.error("Browser Launch/Page Error:", innerError);
+            if (browser) await browser.close();
+            throw innerError;
         }
 
-        const page = await browser.newPage();
-
-        // Set content and wait for fonts to load
-        await page.setContent(htmlContent, {
-            waitUntil: "networkidle0", // Wait for Google Fonts
-        });
-
-        // Generate PDF
-        const pdfBuffer = await page.pdf({
-            format: "A4",
-            printBackground: true,
-            margin: { top: "0mm", right: "0mm", bottom: "0mm", left: "0mm" },
-        });
-
-        await browser.close();
-
-        // Return PDF
-        return new NextResponse(pdfBuffer, {
-            headers: {
-                "Content-Type": "application/pdf",
-                "Content-Disposition": `inline; filename="${certificateType}.pdf"`,
-            },
-        });
-
     } catch (error) {
-        console.error("PDF generation error:", error);
-        return NextResponse.json({ error: "Failed to generate PDF", details: String(error) }, { status: 500 });
+        console.error("PDF generation global error:", error);
+        return NextResponse.json({
+            error: "Failed to generate PDF",
+            details: error instanceof Error ? error.message : String(error)
+        }, { status: 500 });
     }
 }

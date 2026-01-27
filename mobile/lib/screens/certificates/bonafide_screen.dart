@@ -9,6 +9,7 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:pdf/pdf.dart'; // For kIsWeb, defaultTargetPlatform
 import 'package:mobile/services/api_service.dart';
+import 'package:mobile/services/pdf_helper.dart';
 
 class BonafideCertificateScreen extends StatefulWidget {
   final Map<String, dynamic> student;
@@ -105,41 +106,23 @@ class _BonafideCertificateScreenState extends State<BonafideCertificateScreen> {
   }
 
   Future<void> _printPdf(BuildContext context) async {
-       await Printing.layoutPdf(
-        onLayout: (format) => _generatePdf(format),
-      );
+       final pdf = await _generatePdf(PdfPageFormat.a4);
+       await PdfHelper.openPdf(pdf, '${widget.student['firstName']}_Bonafide');
   }
 
   Future<void> _downloadPdf(BuildContext context) async {
       try {
         final pdf = await _generatePdf(PdfPageFormat.a4);
-        await Printing.sharePdf(bytes: pdf, filename: '${widget.student['firstName']}_Bonafide.pdf');
+        await PdfHelper.openPdf(pdf, '${widget.student['firstName']}_Bonafide');
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Download failed: $e')));
+        if(context.mounted) {
+           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Download failed: $e')));
+        }
       }
   }
 
   Future<Uint8List> _generatePdf(PdfPageFormat format) async {
-    try {
-      final url = Uri.parse('$_baseUrl/api/generate-certificate');
-      final response = await http.post(
-        url,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'certificateType': 'bonafide',
-          'studentData': widget.student,
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        return response.bodyBytes;
-      } else {
-        throw Exception('Server returned ${response.statusCode}: ${response.body}');
-      }
-    } catch (e) {
-      // Re-throw to show in PdfPreview
-      throw Exception('Failed to connect to backend: $e');
-    }
+    return ApiService().generateCertificate('bonafide', widget.student);
   }
 }
 
