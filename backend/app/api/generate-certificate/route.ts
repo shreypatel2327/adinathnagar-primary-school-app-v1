@@ -65,14 +65,13 @@ export async function POST(req: NextRequest) {
                 // 3. Resolve executable path
                 executablePath = await chromium.executablePath(packUrl);
 
-                // 4. CRITICAL: Inject LD_LIBRARY_PATH for missing libs on Vercel Node 20
-                // The pack extracts libraries to the same folder as the binary (or a 'lib' subfolder depending on pack structure)
-                // Typically for Sparticuz, it's the folder of the executable.
-                // We add this folder to the LD_LIBRARY_PATH environment variable so the dynamic linker finds libnss3.so etc.
-                const chromeDir = path.dirname(executablePath);
-                process.env.LD_LIBRARY_PATH = `${chromeDir}:${process.env.LD_LIBRARY_PATH || ''}`;
-
-                console.log(`[Vercel] Set LD_LIBRARY_PATH to include: ${chromeDir}`);
+                if (executablePath) {
+                    const chromeDir = path.dirname(executablePath);
+                    process.env.LD_LIBRARY_PATH = `${chromeDir}:${process.env.LD_LIBRARY_PATH || ''}`;
+                    console.log(`[Vercel] Set LD_LIBRARY_PATH to include: ${chromeDir}`);
+                } else {
+                    console.warn("Chromium executablePath is undefined, skipping LD_LIBRARY_PATH injection");
+                }
 
                 launchArgs = chromium.args;
                 headlessMode = chromium.headless;
