@@ -114,8 +114,8 @@ class _SystemLogsScreenState extends State<SystemLogsScreen> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('System Logs', style: GoogleFonts.publicSans(fontWeight: FontWeight.bold, color: Colors.black)),
-            Text('સિસ્ટમ લૉગ્સ', style: GoogleFonts.notoSansGujarati(fontSize: 12, color: Colors.grey)),
+            Text('System Logs', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.black)),
+            Text('સિસ્ટમ લૉગ્સ', style: GoogleFonts.muktaVaani(fontSize: 12, color: Colors.grey)),
           ],
         ),
         centerTitle: true,
@@ -140,7 +140,7 @@ class _SystemLogsScreenState extends State<SystemLogsScreen> {
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search, color: Colors.grey),
                 hintText: 'Search User / વપરાશકર્તા શોધો',
-                hintStyle: GoogleFonts.notoSansGujarati(color: Colors.grey),
+                hintStyle: GoogleFonts.muktaVaani(color: Colors.grey),
                 filled: true,
                 fillColor: Colors.grey[100],
                 border: OutlineInputBorder(
@@ -168,7 +168,7 @@ class _SystemLogsScreenState extends State<SystemLogsScreen> {
                          children: [
                              Icon(Icons.filter_list, color: Colors.grey[600], size: 20),
                              const SizedBox(width: 8),
-                             Text('Filter by Action / ક્રિયા દ્વારા ફિલ્ટર કરો', style: GoogleFonts.notoSansGujarati(color: Colors.grey[600])),
+                             Text('Filter by Action / ક્રિયા દ્વારા ફિલ્ટર કરો', style: GoogleFonts.muktaVaani(color: Colors.grey[600])),
                          ]
                      ), // Placeholder for dropdown or action sheet
                    ),
@@ -190,7 +190,7 @@ class _SystemLogsScreenState extends State<SystemLogsScreen> {
                 return Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: ChoiceChip(
-                    label: Text(period, style: GoogleFonts.notoSansGujarati(
+                    label: Text(period, style: GoogleFonts.muktaVaani(
                         color: isSelected ? Colors.white : Colors.grey[700],
                         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal
                     )),
@@ -219,8 +219,8 @@ class _SystemLogsScreenState extends State<SystemLogsScreen> {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                    Text('USER / વપરાશકર્તા', style: GoogleFonts.publicSans(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
-                    Text('ACTIVITY / પ્રવૃત્તિ', style: GoogleFonts.publicSans(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                    Text('USER / વપરાશકર્તા', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
+                    Text('ACTIVITY / પ્રવૃત્તિ', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 12)),
                 ],
             ),
           ),
@@ -259,7 +259,7 @@ class _SystemLogsScreenState extends State<SystemLogsScreen> {
                                         backgroundColor: _getAvatarColor(userName),
                                         child: Text(
                                             userName.isNotEmpty ? userName[0].toUpperCase() : '?',
-                                            style: GoogleFonts.publicSans(fontWeight: FontWeight.bold, color: Colors.black87)
+                                            style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.black87)
                                         ),
                                     ),
                                     if (userName == 'Admin Office') // Example badge
@@ -282,7 +282,7 @@ class _SystemLogsScreenState extends State<SystemLogsScreen> {
                                         children: [
                                             Row(
                                                 children: [
-                                                    Text(userName, style: GoogleFonts.publicSans(fontWeight: FontWeight.bold, fontSize: 16)),
+                                                    Text(userName, style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, fontSize: 16)),
                                                     const Spacer(),
                                                     Container(
                                                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -291,18 +291,18 @@ class _SystemLogsScreenState extends State<SystemLogsScreen> {
                                                             borderRadius: BorderRadius.circular(4),
                                                             border: Border.all(color: actionColor.withOpacity(0.2))
                                                         ),
-                                                        child: Text(action, style: GoogleFonts.publicSans(fontSize: 12, color: actionColor, fontWeight: FontWeight.w600)),
+                                                        child: Text(action, style: GoogleFonts.muktaVaani(fontSize: 12, color: actionColor, fontWeight: FontWeight.w600)),
                                                     )
                                                 ],
                                             ),
                                             const SizedBox(height: 4),
-                                            Text(description, style: GoogleFonts.publicSans(color: Colors.grey[700], fontSize: 14)),
+                                            Text(description, style: GoogleFonts.muktaVaani(color: Colors.grey[700], fontSize: 14)),
                                             const SizedBox(height: 4),
                                             Row(
                                                 children: [
                                                     Icon(Icons.access_time, size: 12, color: Colors.grey[400]),
                                                     const SizedBox(width: 4),
-                                                    Text(date == 'Today' || date == 'Yesterday' ? '$date $time' : '$date', style: GoogleFonts.publicSans(color: Colors.grey[400], fontSize: 12)),
+                                                    Text(date == 'Today' || date == 'Yesterday' ? '$date $time' : '$date', style: GoogleFonts.muktaVaani(color: Colors.grey[400], fontSize: 12)),
                                                 ],
                                             )
                                         ],

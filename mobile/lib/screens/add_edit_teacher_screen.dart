@@ -58,7 +58,7 @@ class _AddEditTeacherScreenState extends State<AddEditTeacherScreen> {
         ),
         title: Text(
           isEdit ? 'શિક્ષક સુધારો' : 'શિક્ષક ઉમેરો', // Update / Add
-          style: GoogleFonts.notoSansGujarati(
+          style: GoogleFonts.muktaVaani(
             color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
@@ -136,11 +136,11 @@ class _AddEditTeacherScreenState extends State<AddEditTeacherScreen> {
                                    children: [
                                        Text(
                                            'સ્થિતિ', // Status
-                                           style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold, fontSize: 16)
+                                           style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, fontSize: 16)
                                        ),
                                        Text(
                                            _isActive ? 'સક્રિય' : 'નિષ્ક્રિય', // Active / Inactive
-                                           style: GoogleFonts.notoSansGujarati(color: Colors.grey)
+                                           style: GoogleFonts.muktaVaani(color: Colors.grey)
                                        )
                                    ],
                                ),
@@ -170,7 +170,7 @@ class _AddEditTeacherScreenState extends State<AddEditTeacherScreen> {
                  ),
                  child: Text(
                      'સેવ કરો', 
-                     style: GoogleFonts.notoSansGujarati(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)
+                     style: GoogleFonts.muktaVaani(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)
                  ),
              ),
           ),
@@ -181,7 +181,7 @@ class _AddEditTeacherScreenState extends State<AddEditTeacherScreen> {
   InputDecoration _inputDecoration(String hint) {
       return InputDecoration(
           hintText: hint,
-          hintStyle: GoogleFonts.notoSansGujarati(color: Colors.grey),
+          hintStyle: GoogleFonts.muktaVaani(color: Colors.grey),
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade300)),
@@ -193,7 +193,7 @@ class _AddEditTeacherScreenState extends State<AddEditTeacherScreen> {
   Widget _buildLabel(String text) {
       return Text(
           text,
-          style: GoogleFonts.notoSansGujarati(
+          style: GoogleFonts.muktaVaani(
               fontWeight: FontWeight.bold,
               fontSize: 16,
               color: const Color(0xFF111418)

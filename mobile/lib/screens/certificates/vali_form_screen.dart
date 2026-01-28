@@ -32,7 +32,7 @@ class _ValiFormScreenState extends State<ValiFormScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text('Vali Form Preview', style: GoogleFonts.publicSans(color: Colors.black, fontWeight: FontWeight.bold)),
+        title: Text('Vali Form Preview', style: GoogleFonts.muktaVaani(color: Colors.black, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -74,7 +74,7 @@ class _ValiFormScreenState extends State<ValiFormScreen> {
                    child: OutlinedButton.icon(
                      onPressed: () => _printPdf(context),
                      icon: const Icon(Icons.print, color: Colors.black),
-                     label: Text('Print', style: GoogleFonts.publicSans(color: Colors.black, fontWeight: FontWeight.w600)),
+                     label: Text('Print', style: GoogleFonts.muktaVaani(color: Colors.black, fontWeight: FontWeight.w600)),
                      style: OutlinedButton.styleFrom(
                        padding: const EdgeInsets.symmetric(vertical: 16),
                        side: const BorderSide(color: Colors.grey),
@@ -87,7 +87,7 @@ class _ValiFormScreenState extends State<ValiFormScreen> {
                    child: ElevatedButton.icon(
                      onPressed: () => _downloadPdf(context),
                      icon: const Icon(Icons.download, color: Colors.white),
-                     label: Text('Download PDF', style: GoogleFonts.publicSans(color: Colors.white, fontWeight: FontWeight.w600)),
+                     label: Text('Download PDF', style: GoogleFonts.muktaVaani(color: Colors.white, fontWeight: FontWeight.w600)),
                      style: ElevatedButton.styleFrom(
                        backgroundColor: const Color(0xFF2B8CEE),
                        padding: const EdgeInsets.symmetric(vertical: 16),
@@ -113,6 +113,12 @@ class _ValiFormScreenState extends State<ValiFormScreen> {
       try {
         final pdf = await _generatePdf(PdfPageFormat.a4);
         await PdfHelper.openPdf(pdf, '${widget.student['firstName']}_ValiForm');
+        if (context.mounted) {
+           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+             content: Text('ફાઇલ ડાઉનલોડ થઈ ગઈ છે.'),
+             backgroundColor: Colors.green,
+           ));
+        }
       } catch (e) {
         if(context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Download failed: $e')));

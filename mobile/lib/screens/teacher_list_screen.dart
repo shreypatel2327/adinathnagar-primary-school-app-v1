@@ -86,7 +86,7 @@ class _TeacherListScreenState extends State<TeacherListScreen> {
       appBar: AppBar(
         title: Text(
             'શિક્ષકોનું સંચાલન', // Manage Teachers
-            style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold, color: Colors.black)
+            style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.black)
         ),
         backgroundColor: Colors.white,
         elevation: 0.5,
@@ -110,7 +110,7 @@ class _TeacherListScreenState extends State<TeacherListScreen> {
                     controller: _searchController,
                     decoration: InputDecoration(
                         hintText: 'શિક્ષક શોધો...', // Search Teacher...
-                        hintStyle: GoogleFonts.notoSansGujarati(color: Colors.grey),
+                        hintStyle: GoogleFonts.muktaVaani(color: Colors.grey),
                         prefixIcon: const Icon(Icons.search, color: Colors.grey),
                          filled: true,
                         fillColor: Colors.white,
@@ -176,7 +176,7 @@ class _TeacherListScreenState extends State<TeacherListScreen> {
               ),
               child: Text(
                   text,
-                  style: GoogleFonts.notoSansGujarati(
+                  style: GoogleFonts.muktaVaani(
                       color: isSelected ? Colors.white : Colors.grey,
                       fontWeight: FontWeight.w500
                   ),
@@ -213,7 +213,7 @@ class _TeacherListScreenState extends State<TeacherListScreen> {
                      child: Center(
                        child: Text(
                          name.isNotEmpty ? name.substring(0, 1).toUpperCase() : 'T',
-                         style: GoogleFonts.publicSans(
+                         style: GoogleFonts.muktaVaani(
                              fontSize: 20,
                              fontWeight: FontWeight.bold,
                              color: Colors.blue[700],
@@ -226,11 +226,11 @@ class _TeacherListScreenState extends State<TeacherListScreen> {
                        child: Column(
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
-                               Text(name, style: GoogleFonts.notoSansGujarati(fontSize: 16, fontWeight: FontWeight.bold)),
+                               Text(name, style: GoogleFonts.muktaVaani(fontSize: 16, fontWeight: FontWeight.bold)),
                                const SizedBox(height: 4),
                                Row(
                                    children: [
-                                       Text(std, style: GoogleFonts.notoSansGujarati(color: Colors.grey)),
+                                       Text(std, style: GoogleFonts.muktaVaani(color: Colors.grey)),
                                        const SizedBox(width: 8),
                                        Container(
                                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -240,7 +240,7 @@ class _TeacherListScreenState extends State<TeacherListScreen> {
                                            ),
                                            child: Text(
                                                isActive ? 'કાર્યરત' : 'Inactive', 
-                                               style: GoogleFonts.notoSansGujarati(
+                                               style: GoogleFonts.muktaVaani(
                                                    fontSize: 12, 
                                                    color: isActive ? Colors.green : Colors.red, 
                                                    fontWeight: FontWeight.bold

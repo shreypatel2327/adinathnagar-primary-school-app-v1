@@ -91,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   Text(
                     'આદિનાથનગર \nપ્રાથમિક શાળા',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.notoSansGujarati(
+                    style: GoogleFonts.muktaVaani(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFF111418),
@@ -104,7 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   // Subtitle
                   Text(
                     'SCHOOL MANAGEMENT APP',
-                    style: GoogleFonts.publicSans(
+                    style: GoogleFonts.muktaVaani(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 1.2,
@@ -145,7 +145,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   const SizedBox(height: 12),
                   Text(
                     'GOVERNMENT OF GUJARAT',
-                    style: GoogleFonts.publicSans(
+                    style: GoogleFonts.muktaVaani(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 1,
@@ -154,7 +154,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                   Text(
                     'Education Department',
-                    style: GoogleFonts.publicSans(
+                    style: GoogleFonts.muktaVaani(
                       fontSize: 10,
                       fontWeight: FontWeight.w500,
                       color: const Color(0xFF617589),
@@ -163,7 +163,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   const SizedBox(height: 8),
                   Text(
                     'v1.0.0',
-                    style: GoogleFonts.publicSans(
+                    style: GoogleFonts.muktaVaani(
                       fontSize: 10,
                       color: Colors.grey[400],
                     ),

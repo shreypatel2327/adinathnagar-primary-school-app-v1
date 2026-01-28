@@ -178,7 +178,7 @@ class _AavakRegisterScreenState extends State<AavakRegisterScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: Text('આવક રજીસ્ટર', style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold, color: Colors.black)),
+        title: Text('આવક રજીસ્ટર', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.black)),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 1,
@@ -207,7 +207,7 @@ class _AavakRegisterScreenState extends State<AavakRegisterScreen> {
                    controller: _searchController,
                    decoration: InputDecoration(
                      hintText: 'નામ અથવા GR નં. થી શોધો',
-                     hintStyle: GoogleFonts.notoSansGujarati(color: Colors.grey),
+                     hintStyle: GoogleFonts.muktaVaani(color: Colors.grey),
                      prefixIcon: const Icon(Icons.search, color: Colors.grey),
                      filled: true,
                      fillColor: Colors.grey[100],
@@ -259,12 +259,12 @@ class _AavakRegisterScreenState extends State<AavakRegisterScreen> {
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
                  Text('વિદ્યાર્થીઓની યાદી (કુલ: ${_filteredStudents.length.toString().padLeft(2, '0').toGujaratiNumbers()})', 
-                    style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold, fontSize: 16)
+                    style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, fontSize: 16)
                  ),
                  ElevatedButton.icon(
                    onPressed: _exportToExcel, 
                    icon: const Icon(Icons.table_chart, size: 18, color: Color(0xFF1E8E3E)),
-                   label: Text('Excel', style: GoogleFonts.publicSans(color: const Color(0xFF1E8E3E), fontWeight: FontWeight.bold)),
+                   label: Text('Excel', style: GoogleFonts.muktaVaani(color: const Color(0xFF1E8E3E), fontWeight: FontWeight.bold)),
                    style: ElevatedButton.styleFrom(
                      backgroundColor: const Color(0xFFE6F4EA),
                      elevation: 0,
@@ -355,7 +355,7 @@ class _AavakRegisterScreenState extends State<AavakRegisterScreen> {
        ),
        child: Row(
          children: [
-           Text(label, style: GoogleFonts.notoSansGujarati(
+           Text(label, style: GoogleFonts.muktaVaani(
              color: isSelected ? Colors.white : Colors.black87,
              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500
            )),
@@ -422,7 +422,7 @@ class _AavakRegisterScreenState extends State<AavakRegisterScreen> {
                          Container(
                            width: 36, height: 36,
                            decoration: BoxDecoration(color: Colors.grey[100], shape: BoxShape.circle),
-                           child: Center(child: Text(idxStr, style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold, color: Colors.grey[700]))),
+                           child: Center(child: Text(idxStr, style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.grey[700]))),
                          ),
                          const SizedBox(width: 12),
                          // Name & GR
@@ -430,12 +430,12 @@ class _AavakRegisterScreenState extends State<AavakRegisterScreen> {
                            child: Column(
                              crossAxisAlignment: CrossAxisAlignment.start,
                              children: [
-                               Text(fullName, style: GoogleFonts.notoSansGujarati(fontSize: 16, fontWeight: FontWeight.bold)),
+                               Text(fullName, style: GoogleFonts.muktaVaani(fontSize: 16, fontWeight: FontWeight.bold)),
                                const SizedBox(height: 4),
                                Container(
                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                  decoration: BoxDecoration(color: const Color(0xFFE8F0FE), borderRadius: BorderRadius.circular(4)),
-                                 child: Text('GR: $grNo', style: GoogleFonts.notoSansGujarati(color: const Color(0xFF1967D2), fontWeight: FontWeight.bold, fontSize: 12)),
+                                 child: Text('GR: $grNo', style: GoogleFonts.muktaVaani(color: const Color(0xFF1967D2), fontWeight: FontWeight.bold, fontSize: 12)),
                                )
                              ],
                            ),
@@ -444,8 +444,8 @@ class _AavakRegisterScreenState extends State<AavakRegisterScreen> {
                          Column(
                            crossAxisAlignment: CrossAxisAlignment.end,
                            children: [
-                             Text('દાખલ તારીખ', style: GoogleFonts.notoSansGujarati(fontSize: 10, color: Colors.grey)),
-                             Text(admissionDate, style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold, fontSize: 12)),
+                             Text('દાખલ તારીખ', style: GoogleFonts.muktaVaani(fontSize: 10, color: Colors.grey)),
+                             Text(admissionDate, style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, fontSize: 12)),
                            ],
                          )
                        ],
@@ -463,8 +463,8 @@ class _AavakRegisterScreenState extends State<AavakRegisterScreen> {
                              child: Column(
                                crossAxisAlignment: CrossAxisAlignment.start,
                                children: [
-                                 Text('પાછલી શાળા (Previous School)', style: GoogleFonts.notoSansGujarati(fontSize: 10, color: Colors.grey)),
-                                 Text(prevSchool, style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.w600, fontSize: 13), overflow: TextOverflow.ellipsis),
+                                 Text('પાછલી શાળા (Previous School)', style: GoogleFonts.muktaVaani(fontSize: 10, color: Colors.grey)),
+                                 Text(prevSchool, style: GoogleFonts.muktaVaani(fontWeight: FontWeight.w600, fontSize: 13), overflow: TextOverflow.ellipsis),
                                ],
                              )
                          ),

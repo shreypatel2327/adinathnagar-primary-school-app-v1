@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             // Title
                             Text(
                                 'શ્રી સરકારી પ્રાથમિક શાળા',
-                                style: GoogleFonts.notoSansGujarati(
+                                style: GoogleFonts.muktaVaani(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
                                     color: const Color(0xFF111418),
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     children: [
                                         Text(
                                             'વપરાશકર્તા નામ',
-                                            style: GoogleFonts.notoSansGujarati(
+                                            style: GoogleFonts.muktaVaani(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w500,
                                                 color: const Color(0xFF111418),
@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         
                                         Text(
                                             'પાસવર્ડ',
-                                            style: GoogleFonts.notoSansGujarati(
+                                            style: GoogleFonts.muktaVaani(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w500,
                                                 color: const Color(0xFF111418),
@@ -185,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
                                                         : Text(
                                                             'લોગિન',
-                                                            style: GoogleFonts.notoSansGujarati(
+                                                            style: GoogleFonts.muktaVaani(
                                                                 fontSize: 16,
                                                                 fontWeight: FontWeight.bold,
                                                                 color: Colors.white,
@@ -201,7 +201,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             
                             Text(
                                 'v1.0 • સહાયતા',
-                                style: GoogleFonts.notoSansGujarati(
+                                style: GoogleFonts.muktaVaani(
                                     color: const Color(0xFF617589),
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,

@@ -126,7 +126,7 @@ class MyApp extends StatelessWidget {
           surface: Colors.white,
         ),
         useMaterial3: true,
-        textTheme: GoogleFonts.publicSansTextTheme(),
+        textTheme: GoogleFonts.muktaVaaniTextTheme(),
       ),
       routerConfig: _router,
       debugShowCheckedModeBanner: false,

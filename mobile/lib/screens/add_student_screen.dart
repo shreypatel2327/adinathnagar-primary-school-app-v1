@@ -177,7 +177,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> with SingleTickerPr
     return Scaffold(
       backgroundColor: const Color(0xFFF6F7F8),
       appBar: AppBar(
-        title: Text(_isEditMode ? 'Edit Student' : 'Add New Student', style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold)),
+        title: Text(_isEditMode ? 'Edit Student' : 'Add New Student', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(48),
@@ -186,7 +186,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> with SingleTickerPr
                   controller: _tabController,
                   labelColor: const Color(0xFF2B8CEE),
                   unselectedLabelColor: Colors.grey,
-                  labelStyle: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold),
+                  labelStyle: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold),
                   isScrollable: true,
                   tabs: const [
                     Tab(text: 'Profile'),
@@ -225,7 +225,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> with SingleTickerPr
                 ? const CircularProgressIndicator(color: Colors.white)
                 : Text(
                     _isLastTab() ? (_isEditMode ? 'UPDATE STUDENT' : 'SAVE STUDENT') : 'CONTINUE', 
-                    style: GoogleFonts.publicSans(fontWeight: FontWeight.bold, color: Colors.white)
+                    style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.white)
                   ),
           ),
         ),
@@ -236,7 +236,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> with SingleTickerPr
   Widget _buildTabWithForm(int index, Widget child) {
       return Form(
           key: _formKeys[index],
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode: AutovalidateMode.disabled,
           child: child
       );
   }
@@ -285,7 +285,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> with SingleTickerPr
                child: Column(
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
-                   Text('Admission Details', style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold, color: Colors.blue[800])),
+                   Text('Admission Details', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.blue[800])),
                    const SizedBox(height: 8),
                    Row(
                      children: [
@@ -372,7 +372,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> with SingleTickerPr
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Government IDs", style: GoogleFonts.publicSans(fontWeight: FontWeight.bold)),
+          Text("Government IDs", style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           _buildTextField('Student UID (DISE)*', controller: _uidController, validator: _requiredValidator),
           const SizedBox(height: 12),
@@ -386,7 +386,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> with SingleTickerPr
           _buildTextField('Ration Card No*', controller: _rationCardController, validator: _requiredValidator),
           
           const Divider(height: 32),
-          Text("Bank Details (Scholarship)", style: GoogleFonts.publicSans(fontWeight: FontWeight.bold)),
+          Text("Bank Details (Scholarship)", style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
           _buildTextField('Bank Account No*', controller: _bankAccountController, keyboardType: TextInputType.number, validator: _requiredValidator),
           const SizedBox(height: 12),

@@ -159,7 +159,7 @@ class _StudentDetailScreenState extends State<StudentDetailScreen> {
       return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-              Text(title, style: GoogleFonts.publicSans(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue)),
+              Text(title, style: GoogleFonts.muktaVaani(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue)),
               const Divider(),
               ...children,
               const SizedBox(height: 20),

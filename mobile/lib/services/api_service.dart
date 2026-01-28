@@ -20,6 +20,8 @@ class ApiService {
       } else {
         throw Exception('Failed to load students');
       }
+    } on SocketException {
+      throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('Error connecting to server: $e');
     }
@@ -35,6 +37,8 @@ class ApiService {
       if (response.statusCode != 200) {
         throw Exception('Failed to create student: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -51,6 +55,8 @@ class ApiService {
       } else {
         throw Exception('Failed to load student details');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -66,6 +72,8 @@ class ApiService {
       if (response.statusCode != 200) {
         throw Exception('Failed to update student: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -80,6 +88,8 @@ class ApiService {
       if (response.statusCode != 200) {
         throw Exception('Failed to delete student');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -99,6 +109,8 @@ class ApiService {
       if (response.statusCode != 200) {
         throw Exception('Failed to mark student as Javak: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -115,6 +127,8 @@ class ApiService {
       } else {
         throw Exception('Failed to load Javak register: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -131,6 +145,8 @@ class ApiService {
       } else {
         throw Exception('Failed to load Aavak register: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -147,6 +163,8 @@ class ApiService {
       } else {
         throw Exception('Failed to load dashboard stats: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -168,6 +186,8 @@ class ApiService {
       } else {
         throw Exception('Failed to load teachers: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -183,6 +203,8 @@ class ApiService {
       if (response.statusCode != 200) {
         throw Exception('Failed to create teacher: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -198,6 +220,8 @@ class ApiService {
       if (response.statusCode != 200) {
         throw Exception('Failed to update teacher: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('$e');
     }
@@ -223,6 +247,8 @@ class ApiService {
       } else {
         throw Exception('Failed to generate certificate: ${response.body}');
       }
+    } on SocketException {
+       throw Exception('ઇન્ટરનેટ કનેક્શન નથી. મહેરબાની કરીને તમારું ઇન્ટરનેટ ચાલુ કરો.');
     } catch (e) {
       throw Exception('PDF Generation Error: $e');
     }

@@ -17,6 +17,7 @@ class PdfGenerationService {
 
     // 1. Load Gujarati Fonts
     // Using PdfGoogleFonts methods which fetch fonts at runtime or cache them.
+    // Fallback to MuktaVaani for legacy service to avoid compile errors
     final fontRegular = await PdfGoogleFonts.muktaVaaniRegular();
     final fontBold = await PdfGoogleFonts.muktaVaaniBold();
 

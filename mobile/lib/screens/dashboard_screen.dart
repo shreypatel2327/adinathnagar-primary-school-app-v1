@@ -1,51 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mobile/services/api_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mobile/providers/dashboard_provider.dart';
 
-class DashboardScreen extends StatefulWidget {
+class DashboardScreen extends ConsumerStatefulWidget {
   const DashboardScreen({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  ConsumerState<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
-  final ApiService _apiService = ApiService();
-  Map<String, dynamic> _stats = {
-    'totalStudents': '...',
-    'standardCount': '1-8',
-    'aavakCount': '...',
-    'javakCount': '...'
-  };
+class _DashboardScreenState extends ConsumerState<DashboardScreen> {
+  // Stats are now managed by dashboardProvider
   
   @override
   void initState() {
     super.initState();
-    _fetchStats();
+    // Initial fetch handled by provider constructor
   }
   
-  Future<void> _fetchStats() async {
-      try {
-          final data = await _apiService.getDashboardStats();
-          if (mounted) {
-              setState(() {
-                  _stats = {
-                      'totalStudents': data['totalStudents'].toString(),
-                      'standardCount': data['standardCount'].toString(),
-                      'aavakCount': data['aavakCount'].toString(), 
-                      'javakCount': data['javakCount'].toString()
-                  };
-              });
-          }
-      } catch (e) {
-          // Keep defaults
-          print("Error fetching stats: $e");
-      }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final statsAsync = ref.watch(dashboardProvider);
+    
+    // Default values while loading or error
+    Map<String, String> displayStats = {
+      'totalStudents': '...',
+      'standardCount': '1-8',
+      'aavakCount': '...',
+      'javakCount': '...'
+    };
+
+    statsAsync.whenData((data) {
+       displayStats = {
+          'totalStudents': data['totalStudents'].toString(),
+          'standardCount': data['standardCount'].toString(),
+          'aavakCount': data['aavakCount'].toString(), 
+          'javakCount': data['javakCount'].toString()
+       };
+    });
+
     return Scaffold(
       backgroundColor: const Color(0xFFF6F7F8),
       appBar: AppBar(
@@ -72,7 +67,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 Text(
                   'આદિનાથનગર પ્રાથમિક શાળા',
-                  style: GoogleFonts.notoSansGujarati(
+                  style: GoogleFonts.muktaVaani(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF111418),
@@ -80,7 +75,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 Text(
                   'આચાર્ય ડેશબોર્ડ',
-                  style: GoogleFonts.notoSansGujarati(
+                  style: GoogleFonts.muktaVaani(
                     fontSize: 12,
                     color: const Color(0xFF617589),
                     fontWeight: FontWeight.w500,
@@ -121,7 +116,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
                 decoration: InputDecoration(
                   hintText: 'નામ, GR નં, અથવા મોબાઇલ દ્વારા શોધો...',
-                  hintStyle: GoogleFonts.notoSansGujarati(color: const Color(0xFF617589)),
+                  hintStyle: GoogleFonts.muktaVaani(color: const Color(0xFF617589)),
                   prefixIcon: const Icon(Icons.search, color: Color(0xFF617589)),
                   filled: true,
                   fillColor: const Color(0xFFF0F2F4),
@@ -149,25 +144,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     icon: Icons.groups,
                     iconColor: const Color(0xFF2B8CEE),
                     label: 'કુલ વિદ્યાર્થી',
-                    value: _stats['totalStudents'],
+                    value: displayStats['totalStudents']!,
                   ),
                   _buildStatCard(
                     icon: Icons.school,
                     iconColor: Colors.orange,
                     label: 'ધોરણવાર',
-                    value: _stats['standardCount'],
+                    value: displayStats['standardCount']!,
                   ),
                   _buildStatCard(
                     icon: Icons.move_to_inbox,
                     iconColor: Colors.green,
                     label: 'આવક',
-                    value: _stats['aavakCount'],
+                    value: displayStats['aavakCount']!,
                   ),
                   _buildStatCard(
                     icon: Icons.outbox,
                     iconColor: Colors.red,
                     label: 'જાવક',
-                    value: _stats['javakCount'],
+                    value: displayStats['javakCount']!,
                   ),
                 ],
               ),
@@ -181,7 +176,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Text(
                     'ઝડપી કાર્યો',
-                    style: GoogleFonts.notoSansGujarati(
+                    style: GoogleFonts.muktaVaani(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFF111418),
@@ -194,7 +189,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: const Color(0xFF2B8CEE),
                     title: 'નવો વિદ્યાર્થી',
                     subtitle: 'પ્રવેશ ફોર્મ ભરો',
-                    onTap: () => context.push('/students/add'),
+                    onTap: () async {
+                       await context.push('/students/add');
+                       // Refresh stats when coming back
+                       if (mounted) ref.read(dashboardProvider.notifier).refreshStats();
+                    },
                   ),
                   const SizedBox(height: 12),
                   _buildActionCard(
@@ -212,7 +211,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: Colors.teal,
                     title: 'પત્રકો',
                     subtitle: 'હાજરી અને અન્ય પત્રકો',
-                    onTap: () => context.push('/students'),
+                    // Task 3: Disable navigation for "Patrako"
+                    // Removed navigation
+                    onTap: () {}, 
                   ),
                    const SizedBox(height: 12),
                    _buildActionCard(
@@ -221,7 +222,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                      color: Colors.redAccent,
                      title: 'જાવક રજીસ્ટર',
                      subtitle: 'કમી કરેલ વિદ્યાર્થીઓ',
-                     onTap: () => context.push('/javak-register'),
+                     onTap: () async {
+                        await context.push('/javak-register');
+                        if (mounted) ref.read(dashboardProvider.notifier).refreshStats();
+                     },
                    ),
                    const SizedBox(height: 12),
                    _buildActionCard(
@@ -230,7 +234,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                      color: Colors.green,
                      title: 'આવક રજીસ્ટર',
                      subtitle: 'તમામ દાખલ વિદ્યાર્થીઓ',
-                     onTap: () => context.push('/aavak-register'),
+                     onTap: () async {
+                        await context.push('/aavak-register');
+                        if (mounted) ref.read(dashboardProvider.notifier).refreshStats();
+                     },
                    ),
                 ],
               ),
@@ -247,7 +254,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                      children: [
                        Text(
                         'તાજેતરની પ્રવૃત્તિ',
-                        style: GoogleFonts.notoSansGujarati(
+                        style: GoogleFonts.muktaVaani(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFF111418),
@@ -257,9 +264,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                          onPressed: () => context.push('/system-logs'),
                          child: Text(
                            'બધું જુઓ',
-                           style: GoogleFonts.notoSansGujarati(
+                           style: GoogleFonts.muktaVaani(
                              color: const Color(0xFF2B8CEE),
                              fontWeight: FontWeight.w500,
+                             // decoration: TextDecoration.underline,
                            ),
                          ),
                        ),
@@ -297,10 +305,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: const Color(0xFF2B8CEE),
         unselectedItemColor: Colors.grey,
-        selectedLabelStyle: GoogleFonts.notoSansGujarati(fontSize: 12, fontWeight: FontWeight.w500),
-        unselectedLabelStyle: GoogleFonts.notoSansGujarati(fontSize: 12, fontWeight: FontWeight.w500),
-        onTap: (index) {
-          if (index == 1) context.push('/students'); // Students tab
+        selectedLabelStyle: GoogleFonts.muktaVaani(fontSize: 12, fontWeight: FontWeight.w500),
+        unselectedLabelStyle: GoogleFonts.muktaVaani(fontSize: 12, fontWeight: FontWeight.w500),
+        onTap: (index) async {
+          if (index == 1) {
+              await context.push('/students'); 
+              if (mounted) ref.read(dashboardProvider.notifier).refreshStats();
+          }
           if (index == 2) context.push('/teachers'); // Staff tab
         },
         items: const [
@@ -335,7 +346,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(width: 8),
               Text(
                 label,
-                style: GoogleFonts.notoSansGujarati(
+                style: GoogleFonts.muktaVaani(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: const Color(0xFF111418),
@@ -346,7 +357,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           const Spacer(),
           Text(
             value,
-            style: GoogleFonts.publicSans(
+            style: GoogleFonts.muktaVaani(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: const Color(0xFF111418),
@@ -391,7 +402,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.notoSansGujarati(
+                    style: GoogleFonts.muktaVaani(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xFF111418),
@@ -399,7 +410,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   Text(
                     subtitle,
-                    style: GoogleFonts.notoSansGujarati(
+                    style: GoogleFonts.muktaVaani(
                       fontSize: 12,
                       color: Colors.grey,
                     ),
@@ -442,12 +453,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
              child: Column(
                crossAxisAlignment: CrossAxisAlignment.start,
                children: [
-                 Text(title, style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.w500)),
-                 Text(subtitle, style: GoogleFonts.notoSansGujarati(fontSize: 12, color: Colors.grey)),
+                 Text(title, style: GoogleFonts.muktaVaani(fontWeight: FontWeight.w500)),
+                 Text(subtitle, style: GoogleFonts.muktaVaani(fontSize: 12, color: Colors.grey)),
                ],
              ),
            ),
-           Text(time, style: GoogleFonts.notoSansGujarati(fontSize: 10, color: Colors.grey)),
+           Text(time, style: GoogleFonts.muktaVaani(fontSize: 10, color: Colors.grey)),
         ],
       ),
     );

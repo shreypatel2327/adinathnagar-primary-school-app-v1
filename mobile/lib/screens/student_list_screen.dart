@@ -108,7 +108,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
         ),
         title: Text(
           'વિદ્યાર્થીઓ (Students)',
-          style: GoogleFonts.notoSansGujarati(
+          style: GoogleFonts.muktaVaani(
             color: const Color(0xFF111418),
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -140,7 +140,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
                         controller: _searchController,
                         decoration: InputDecoration(
                         hintText: 'Search by Name or GR No...',
-                        hintStyle: GoogleFonts.publicSans(color: const Color(0xFF617589)),
+                        hintStyle: GoogleFonts.muktaVaani(color: const Color(0xFF617589)),
                         prefixIcon: const Icon(Icons.search, color: Color(0xFF617589)),
                         filled: true,
                         fillColor: const Color(0xFFF0F2F4),
@@ -166,7 +166,10 @@ class _StudentListScreenState extends State<StudentListScreen> {
                                         _selectedGender = null; 
                                         _applyFilters(); 
                                     }),
-                                    child: _buildFilterChip('All Students', _selectedStandard == null && _selectedGender == null)
+                                    child: _buildFilterChip('All Students', 
+                                        ((widget.lockedStandard == null && _selectedStandard == null) || 
+                                         (widget.lockedStandard != null && _selectedStandard == widget.lockedStandard.toString())) 
+                                        && _selectedGender == null)
                                 ),
                                 const SizedBox(width: 8),
                                 if (widget.lockedStandard == null) ...[
@@ -260,7 +263,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
        ),
        child: Row(
          children: [
-           Text(label, style: GoogleFonts.notoSansGujarati(
+           Text(label, style: GoogleFonts.muktaVaani(
              color: isSelected ? Colors.white : Colors.black87,
              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500
            )),
@@ -314,7 +317,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
                   child: Center(
                     child: Text(
                       initials,
-                      style: GoogleFonts.publicSans(
+                      style: GoogleFonts.muktaVaani(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: _getCategoryTextColor(category),
@@ -331,7 +334,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
                     children: [
                       Text(
                         fullName,
-                        style: GoogleFonts.notoSansGujarati(
+                        style: GoogleFonts.muktaVaani(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFF111418),
@@ -348,7 +351,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
                               ),
                               child: Text(
                                 'GR: $grNo',
-                                style: GoogleFonts.publicSans(
+                                style: GoogleFonts.muktaVaani(
                                   fontSize: 12,
                                   color: const Color(0xFF1967D2),
                                   fontWeight: FontWeight.w700,
@@ -360,7 +363,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
                             const SizedBox(width: 4),
                             Text(
                               mobile,
-                              style: GoogleFonts.publicSans(
+                              style: GoogleFonts.muktaVaani(
                                 fontSize: 13,
                                 color: const Color(0xFF617589),
                                 fontWeight: FontWeight.w500,
@@ -489,8 +492,8 @@ class _StudentListScreenState extends State<StudentListScreen> {
                     child: const Icon(Icons.person_remove, color: Colors.red, size: 32)
                 ),
                 const SizedBox(height: 10),
-                Text('વિદ્યાર્થી કમી કરો', style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold, fontSize: 22)),
-                Text('કૃપા કરીને નીચેની વિગતો ભરો', style: GoogleFonts.notoSansGujarati(fontSize: 14, color: Colors.grey)),
+                Text('વિદ્યાર્થી કમી કરો', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, fontSize: 22)),
+                Text('કૃપા કરીને નીચેની વિગતો ભરો', style: GoogleFonts.muktaVaani(fontSize: 14, color: Colors.grey)),
               ],
             )
           ),
@@ -499,20 +502,20 @@ class _StudentListScreenState extends State<StudentListScreen> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Text('જનાર શાળાનું નામ', style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold)),
+                 Text('જનાર શાળાનું નામ', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold)),
                  const SizedBox(height: 5),
                  TextField(
                    controller: schoolController,
                    decoration: InputDecoration(
                      hintText: 'શાળાનું નામ લખો...',
-                     hintStyle: GoogleFonts.notoSansGujarati(color: Colors.grey),
+                     hintStyle: GoogleFonts.muktaVaani(color: Colors.grey),
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                    ),
                  ),
                  const SizedBox(height: 16),
             
-                 Text('કમી કર્યા તારીખ', style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold)),
+                 Text('કમી કર્યા તારીખ', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold)),
                  const SizedBox(height: 5),
                  TextField(
                    controller: dateController,
@@ -537,13 +540,13 @@ class _StudentListScreenState extends State<StudentListScreen> {
                  ),
                  const SizedBox(height: 16),
 
-                 Text('રિમાર્ક (Remarks)', style: GoogleFonts.notoSansGujarati(fontWeight: FontWeight.bold)),
+                 Text('રિમાર્ક (Remarks)', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold)),
                  const SizedBox(height: 5),
                  TextField(
                    controller: remarksController,
                    decoration: InputDecoration(
                      hintText: 'રિમાર્ક લખો...',
-                     hintStyle: GoogleFonts.notoSansGujarati(color: Colors.grey),
+                     hintStyle: GoogleFonts.muktaVaani(color: Colors.grey),
                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                    ),
@@ -563,7 +566,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       side: BorderSide(color: Colors.grey.shade300)
                     ),
-                    child: Text('રદ કરો', style: GoogleFonts.notoSansGujarati(color: Colors.black)),
+                    child: Text('રદ કરો', style: GoogleFonts.muktaVaani(color: Colors.black)),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -594,7 +597,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     ),
-                    child: Text('પુષ્ટિ કરો', style: GoogleFonts.notoSansGujarati(color: Colors.white, fontWeight: FontWeight.bold)),
+                    child: Text('પુષ્ટિ કરો', style: GoogleFonts.muktaVaani(color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
                 ),
               ],

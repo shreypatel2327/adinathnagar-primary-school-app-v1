@@ -60,7 +60,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF6F7F8),
       appBar: AppBar(
-        title: Text('Dashboard', style: GoogleFonts.publicSans(fontWeight: FontWeight.bold, color: Colors.black)),
+        title: Text('Dashboard', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, color: Colors.black)),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 1,
@@ -117,9 +117,9 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                                Text('Namaste, ${name.split(' ')[0]}', style: GoogleFonts.publicSans(fontSize: 18, fontWeight: FontWeight.bold)),
-                                Text('Class Teacher: Std $standard', style: GoogleFonts.notoSansGujarati(color: Colors.blue[700], fontWeight: FontWeight.w500)),
-                                Text('વર્ગ શિક્ષક: ધોરણ $standard', style: GoogleFonts.notoSansGujarati(fontSize: 12, color: Colors.blue[700])),
+                                Text('Namaste, ${name.split(' ')[0]}', style: GoogleFonts.muktaVaani(fontSize: 18, fontWeight: FontWeight.bold)),
+                                Text('Class Teacher: Std $standard', style: GoogleFonts.muktaVaani(color: Colors.blue[700], fontWeight: FontWeight.w500)),
+                                Text('વર્ગ શિક્ષક: ધોરણ $standard', style: GoogleFonts.muktaVaani(fontSize: 12, color: Colors.blue[700])),
                             ],
                         )
                     ],
@@ -127,7 +127,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             ),
             
             const SizedBox(height: 24),
-            Text('Overview (ઝાંખી)', style: GoogleFonts.notoSansGujarati(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text('Overview (ઝાંખી)', style: GoogleFonts.muktaVaani(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             
             // Stats Card
@@ -152,26 +152,26 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                             ],
                         ),
                         const SizedBox(height: 16),
-                        Text('Total Students', style: GoogleFonts.publicSans(color: Colors.grey[600])),
+                        Text('Total Students', style: GoogleFonts.muktaVaani(color: Colors.grey[600])),
                         Row(
                             crossAxisAlignment: CrossAxisAlignment.baseline,
                             textBaseline: TextBaseline.alphabetic,
                             children: [
-                                Text(_isLoading ? '...' : '$_totalStudents', style: GoogleFonts.publicSans(fontSize: 32, fontWeight: FontWeight.bold)),
+                                Text(_isLoading ? '...' : '$_totalStudents', style: GoogleFonts.muktaVaani(fontSize: 32, fontWeight: FontWeight.bold)),
                                 const SizedBox(width: 8),
-                                Text('(કુલ વિદ્યાર્થીઓ)', style: GoogleFonts.notoSansGujarati(color: Colors.grey)),
+                                Text('(કુલ વિદ્યાર્થીઓ)', style: GoogleFonts.muktaVaani(color: Colors.grey)),
                             ],
                         ),
                         const SizedBox(height: 16),
                         LinearProgressIndicator(value: 0.85, backgroundColor: Colors.blue[50], color: Colors.blue, borderRadius: BorderRadius.circular(4)), // Dummy value for UI
                         const SizedBox(height: 8),
-                         Text('85% Attendance Today', style: GoogleFonts.publicSans(fontSize: 12, color: Colors.grey)),
+                         Text('85% Attendance Today', style: GoogleFonts.muktaVaani(fontSize: 12, color: Colors.grey)),
                     ],
                 ),
             ),
             
             const SizedBox(height: 24),
-            Text('Quick Actions (ઝડપી ક્રિયાઓ)', style: GoogleFonts.notoSansGujarati(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text('Quick Actions (ઝડપી ક્રિયાઓ)', style: GoogleFonts.muktaVaani(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             
             Row(
@@ -210,8 +210,8 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                    Text('Notices (સૂચનાઓ)', style: GoogleFonts.notoSansGujarati(fontSize: 18, fontWeight: FontWeight.bold)),
-                     Text('View All', style: GoogleFonts.publicSans(color: Colors.blue, fontWeight: FontWeight.bold)),
+                    Text('Notices (સૂચનાઓ)', style: GoogleFonts.muktaVaani(fontSize: 18, fontWeight: FontWeight.bold)),
+                     Text('View All', style: GoogleFonts.muktaVaani(color: Colors.blue, fontWeight: FontWeight.bold)),
                 ],
             ),
              const SizedBox(height: 12),
@@ -229,16 +229,16 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                          Row(
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
-                                 Text('Diwali Vacation Update', style: GoogleFonts.publicSans(fontWeight: FontWeight.bold)),
+                                 Text('Diwali Vacation Update', style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold)),
                                  Container(
                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                      decoration: BoxDecoration(color: Colors.grey[200], borderRadius: BorderRadius.circular(4)),
-                                     child: Text('Today', style: GoogleFonts.publicSans(fontSize: 10)),
+                                     child: Text('Today', style: GoogleFonts.muktaVaani(fontSize: 10)),
                                  )
                              ],
                          ),
                          const SizedBox(height: 8),
-                         Text('School will remain closed from Oct 28th for Diwali vacation. (દિવાળી વેકેશન માટે શાળા બંધ રહેશે.)', style: GoogleFonts.notoSansGujarati(color: Colors.grey[600], fontSize: 13)),
+                         Text('School will remain closed from Oct 28th for Diwali vacation. (દિવાળી વેકેશન માટે શાળા બંધ રહેશે.)', style: GoogleFonts.muktaVaani(color: Colors.grey[600], fontSize: 13)),
                      ],
                  ),
              )
@@ -250,8 +250,8 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: const Color(0xFF2B8CEE),
         unselectedItemColor: Colors.grey,
-        selectedLabelStyle: GoogleFonts.notoSansGujarati(fontSize: 12, fontWeight: FontWeight.w500),
-        unselectedLabelStyle: GoogleFonts.notoSansGujarati(fontSize: 12, fontWeight: FontWeight.w500),
+        selectedLabelStyle: GoogleFonts.muktaVaani(fontSize: 12, fontWeight: FontWeight.w500),
+        unselectedLabelStyle: GoogleFonts.muktaVaani(fontSize: 12, fontWeight: FontWeight.w500),
         currentIndex: 0,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.grid_view_rounded), label: 'Home'),
@@ -287,9 +287,9 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
                           child: Icon(icon, color: color, size: 28),
                       ),
                       const SizedBox(height: 16),
-                      Text(label, style: GoogleFonts.publicSans(fontWeight: FontWeight.bold, fontSize: 16)),
+                      Text(label, style: GoogleFonts.muktaVaani(fontWeight: FontWeight.bold, fontSize: 16)),
                        const SizedBox(height: 4),
-                      Text(subLabel, style: GoogleFonts.notoSansGujarati(color: Colors.grey, fontSize: 12)),
+                      Text(subLabel, style: GoogleFonts.muktaVaani(color: Colors.grey, fontSize: 12)),
                   ],
               ),
           ),
