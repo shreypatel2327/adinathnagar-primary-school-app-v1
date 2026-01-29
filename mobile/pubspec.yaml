@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   http: ^1.6.0
   google_fonts: ^8.0.0
-  flutter_riverpod: ^3.2.0
+  flutter_riverpod: ^2.6.1
   go_router: ^17.0.1
   pdf: ^3.11.3
   printing: ^5.14.2
@@ -45,6 +45,7 @@ dependencies:
   open_file: ^3.5.11
   intl: ^0.20.2
   shared_preferences: ^2.2.2
+  
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +57,22 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/appstore.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/appstore.png"
+    background_color: "#ffffff"
+    theme_color: "#ffffff"
+  windows:
+    generate: true
+    image_path: "assets/images/appstore.png"
+    icon_size: 48
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

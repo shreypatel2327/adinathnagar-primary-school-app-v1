@@ -10,6 +10,8 @@ import 'package:flutter/foundation.dart';
 import 'package:pdf/pdf.dart'; // For kIsWeb, defaultTargetPlatform
 import 'package:mobile/services/api_service.dart';
 import 'package:mobile/services/pdf_helper.dart';
+import 'package:mobile/services/pdf_helper.dart';
+import 'package:mobile/utils/gujarati_shaper.dart';
 import 'package:mobile/services/pdf_service.dart';
 
 class BonafideCertificateScreen extends StatefulWidget {
@@ -129,7 +131,16 @@ class _BonafideCertificateScreenState extends State<BonafideCertificateScreen> {
   }
 
   Future<Uint8List> _generatePdf(PdfPageFormat format) async {
-    return PdfService.generateBonafidePdf(widget.student);
+    // Fix unicode issues for name
+    final fixedData = Map<String, dynamic>.from(widget.student);
+    if (fixedData['firstName'] != null) {
+       fixedData['firstName'] = GujaratiShaper.fix(fixedData['firstName']);
+    }
+    if (fixedData['fullName'] != null) {
+       fixedData['fullName'] = GujaratiShaper.fix(fixedData['fullName']);
+    }
+
+    return PdfService.generateBonafidePdf(fixedData);
   }
 }
 

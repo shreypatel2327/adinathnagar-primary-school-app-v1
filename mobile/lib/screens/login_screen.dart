@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             
                             // Title
                             Text(
-                                'શ્રી સરકારી પ્રાથમિક શાળા',
+                                'આદિનાથનગર પ્રાથમિક શાળા',
                                 style: GoogleFonts.muktaVaani(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,

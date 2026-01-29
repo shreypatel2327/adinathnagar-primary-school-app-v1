@@ -16,8 +16,10 @@ import 'package:mobile/screens/add_edit_teacher_screen.dart';
 import 'package:mobile/screens/system_logs_screen.dart';
 import 'package:mobile/screens/teacher_dashboard_screen.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 final GoRouter _router = GoRouter(

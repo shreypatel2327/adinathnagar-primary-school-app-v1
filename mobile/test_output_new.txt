@@ -1,0 +1,6 @@
+Dharma Input: ધ ર ્ મ
+Dharma Output: AA7 AB0 ACD AAE
+Harshil Input: હ ર ્ ષ િ લ
+Harshil Output: AB9 AB0 ACD ABF AB7 AB2
+Ki Input: ક િ
+Ki Output: ABF A95
